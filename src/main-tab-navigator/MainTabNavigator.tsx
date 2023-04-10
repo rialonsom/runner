@@ -1,10 +1,10 @@
 import React from 'react';
-import {NewAppScreen} from '../new-app-screen';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {RunList} from '../run-list';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Summary} from '../summary';
-import {RunDetail} from '../run-detail';
+import { NewAppScreen } from '../new-app-screen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RunList } from '../run-list';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Summary } from '../summary';
+import { RunDetail } from '../run-detail';
 
 const MainTab = createBottomTabNavigator();
 
@@ -30,7 +30,7 @@ function SummaryStackScreen() {
 
 export function MainTabNavigator() {
   return (
-    <MainTab.Navigator screenOptions={{headerShown: false}}>
+    <MainTab.Navigator screenOptions={{ headerShown: false }}>
       <MainTab.Screen name="RunsTab" component={RunsStackScreen} />
       <MainTab.Screen name="SummaryTab" component={SummaryStackScreen} />
     </MainTab.Navigator>

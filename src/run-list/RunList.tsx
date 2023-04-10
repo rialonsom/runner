@@ -10,7 +10,7 @@ import {
   getRunsDisplayData,
 } from '../../data/getRunsDisplayData';
 
-export function RunList({navigation}) {
+export function RunList({ navigation }) {
   const runs = getRunsDisplayData();
 
   const renderItem = (item: ListRenderItemInfo<RunDisplayData>) => {

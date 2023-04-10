@@ -5,9 +5,9 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator='iPhone 14'",
-    "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'data/**/*.ts'",
+    "format": "prettier --write './**/*.ts' './**/*.tsx'",
     "format:changed": "prettier --write $(git diff --name-only --diff-filter d | grep -e '\\.[t]sx\\?$' | xargs)",
-    "format:check": "prettier --check 'src/**/*.ts' 'src/**/*.tsx' 'data/**/*.ts'",
+    "format:check": "prettier --check './**/*.ts' './**/*.tsx'",
     "format:single": "prettier --write",
     "lint": "eslint .",
     "lint-staged": "lint-staged",
