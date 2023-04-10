@@ -9,8 +9,11 @@ import {
   RunDisplayData,
   getRunsDisplayData,
 } from '../../data/getRunsDisplayData';
+import { useNavigation } from '@react-navigation/native';
+import { RunsStackNavigationProp } from '../main-tab-navigator';
 
-export function RunList({ navigation }) {
+export function RunList() {
+  const navigation = useNavigation<RunsStackNavigationProp>();
   const runs = getRunsDisplayData();
 
   const renderItem = (item: ListRenderItemInfo<RunDisplayData>) => {

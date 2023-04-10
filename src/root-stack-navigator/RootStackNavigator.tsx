@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { MainTabNavigator } from '../main-tab-navigator/MainTabNavigator';
+import { RunCreation } from '../run-creation';
 
 const RootStack = createNativeStackNavigator();
 
@@ -14,7 +15,7 @@ export function RootStackNavigator() {
         />
       </RootStack.Group>
       <RootStack.Group screenOptions={{ presentation: 'modal' }}>
-        {/* Modals */}
+        <RootStack.Screen name="RunCreation" component={RunCreation} />
       </RootStack.Group>
     </RootStack.Navigator>
   );

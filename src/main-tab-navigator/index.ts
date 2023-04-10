@@ -1,1 +1,2 @@
-export * from '../main-tab-navigator';
+export * from './MainTabNavigator';
+export * from './types';
