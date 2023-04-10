@@ -1,20 +1,27 @@
 import React from 'react';
-import {Button, FlatList, Text} from 'react-native';
-import {getRunsDisplayData} from '../../data/getRunsDisplayData';
+import {
+  FlatList,
+  ListRenderItemInfo,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  RunDisplayData,
+  getRunsDisplayData,
+} from '../../data/getRunsDisplayData';
 
 export function RunList({navigation}) {
   const runs = getRunsDisplayData();
-  return (
-    <>
-      <Text>Run List</Text>
-      <Button
-        title="Go to"
-        onPress={() => navigation.navigate('NewAppScreen')}
-      />
-      <FlatList
-        data={runs}
-        renderItem={item => <Text>{item.item.date}</Text>}
-      />
-    </>
-  );
+
+  const renderItem = (item: ListRenderItemInfo<RunDisplayData>) => {
+    const run = item.item;
+
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate('RunDetail')}>
+        <Text>{run.date}</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  return <FlatList data={runs} renderItem={renderItem} />;
 }

@@ -12,6 +12,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RunList} from './src/runlist';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Summary} from './src/summary';
+import {RunDetail} from './src/rundetail';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +22,7 @@ function RunsStackScreen() {
     <RunsStack.Navigator initialRouteName="RunList">
       <RunsStack.Screen name="NewAppScreen" component={NewAppScreen} />
       <RunsStack.Screen name="RunList" component={RunList} />
+      <RunsStack.Screen name="RunDetail" component={RunDetail} />
     </RunsStack.Navigator>
   );
 }

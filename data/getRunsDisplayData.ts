@@ -1,7 +1,14 @@
 import data from './runs.json';
 import format from 'format-duration';
 
-export function getRunsDisplayData() {
+export type RunDisplayData = {
+  date: string;
+  distance: number;
+  duration: string;
+  pace: string;
+};
+
+export function getRunsDisplayData(): RunDisplayData[] {
   const rawRuns = data;
 
   const runs = rawRuns.map(run => {
