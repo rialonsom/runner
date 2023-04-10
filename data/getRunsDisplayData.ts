@@ -1,4 +1,4 @@
-import data from './runs.json';
+import { getRuns } from './getRuns';
 import format from 'format-duration';
 
 export type RunDisplayData = {
@@ -9,7 +9,7 @@ export type RunDisplayData = {
 };
 
 export function getRunsDisplayData(): RunDisplayData[] {
-  const rawRuns = data;
+  const rawRuns = getRuns();
 
   const runs = rawRuns.map(run => {
     const duration = format(run.duration_seconds);
