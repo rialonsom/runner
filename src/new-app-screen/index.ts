@@ -1,1 +1,1 @@
-export * from "./NewAppScreen";
+export * from './NewAppScreen';
