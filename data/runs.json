@@ -1,0 +1,422 @@
+[
+  {
+    "_id": "1a75fb14-c2d9-4924-9658-9213c9ce7508",
+    "duration_seconds": 5292,
+    "distance_meters": 4307,
+    "date": "2021-06-15T09:45:12"
+  },
+  {
+    "_id": "ca4b17f1-83fe-49a1-9d0c-6134ba3f9141",
+    "duration_seconds": 9165,
+    "distance_meters": 4498,
+    "date": "2021-02-01T05:19:02"
+  },
+  {
+    "_id": "f8cb0829-7ea6-4fad-a29b-93797891c533",
+    "duration_seconds": 9241,
+    "distance_meters": 3342,
+    "date": "2018-09-27T06:01:07"
+  },
+  {
+    "_id": "d786b27d-8fe3-47c7-9a88-9982f6d55dda",
+    "duration_seconds": 265,
+    "distance_meters": 1682,
+    "date": "2019-11-18T08:53:16"
+  },
+  {
+    "_id": "6f632082-b5fa-4c40-a567-bb51a3dc4d89",
+    "duration_seconds": 4326,
+    "distance_meters": 6237,
+    "date": "2022-10-08T08:56:52"
+  },
+  {
+    "_id": "193de5ae-e5e6-40ba-9150-4842500867da",
+    "duration_seconds": 6506,
+    "distance_meters": 4699,
+    "date": "2020-08-04T09:22:27"
+  },
+  {
+    "_id": "1d5c85c2-0e72-4b50-b742-94d812d56fa0",
+    "duration_seconds": 355,
+    "distance_meters": 5829,
+    "date": "2022-11-11T02:06:39"
+  },
+  {
+    "_id": "8b007f8b-ec94-41fd-b37f-62e3a3ca3917",
+    "duration_seconds": 6876,
+    "distance_meters": 9167,
+    "date": "2020-05-11T11:48:15"
+  },
+  {
+    "_id": "f3a14aba-aec6-4375-b142-a710343553a5",
+    "duration_seconds": 10731,
+    "distance_meters": 4799,
+    "date": "2020-08-04T12:07:08"
+  },
+  {
+    "_id": "e282549b-60de-4497-ad4b-2acde4daf9fd",
+    "duration_seconds": 4131,
+    "distance_meters": 2196,
+    "date": "2020-09-14T02:05:09"
+  },
+  {
+    "_id": "faa11cb4-30f5-4987-8e9b-b33741b8d756",
+    "duration_seconds": 8521,
+    "distance_meters": 8393,
+    "date": "2023-03-28T04:39:56"
+  },
+  {
+    "_id": "3d635bd6-03a3-4c37-a07f-f27db980c472",
+    "duration_seconds": 8926,
+    "distance_meters": 882,
+    "date": "2019-12-07T03:16:16"
+  },
+  {
+    "_id": "fe11c4a3-e651-4a7b-9c06-858b39831486",
+    "duration_seconds": 8394,
+    "distance_meters": 3923,
+    "date": "2018-03-30T11:45:24"
+  },
+  {
+    "_id": "ceb862f0-6633-4f02-94f3-b1c1c09c0832",
+    "duration_seconds": 10624,
+    "distance_meters": 6240,
+    "date": "2022-01-25T05:55:19"
+  },
+  {
+    "_id": "abdeb468-ab60-4496-bd7a-2c9e73a76316",
+    "duration_seconds": 7392,
+    "distance_meters": 2942,
+    "date": "2023-01-26T02:22:00"
+  },
+  {
+    "_id": "bdfbcb99-645d-4808-b8f7-9235fe526bbd",
+    "duration_seconds": 3820,
+    "distance_meters": 6322,
+    "date": "2021-10-19T02:48:37"
+  },
+  {
+    "_id": "0c75872f-bbaf-4efc-aa41-936e7c383f24",
+    "duration_seconds": 4965,
+    "distance_meters": 8856,
+    "date": "2023-02-12T05:08:00"
+  },
+  {
+    "_id": "fd56bfc5-0267-4941-a2b9-be2b8d00d326",
+    "duration_seconds": 9492,
+    "distance_meters": 6552,
+    "date": "2021-05-09T07:41:41"
+  },
+  {
+    "_id": "41ad9fa8-ef31-4953-a0cc-fbf9cdd2373d",
+    "duration_seconds": 6599,
+    "distance_meters": 3204,
+    "date": "2020-08-16T01:44:38"
+  },
+  {
+    "_id": "cb36456c-ccb9-48f6-af69-29b376be14ca",
+    "duration_seconds": 3220,
+    "distance_meters": 285,
+    "date": "2020-10-19T12:52:48"
+  },
+  {
+    "_id": "26815d13-1764-4dad-a672-115a161c10a4",
+    "duration_seconds": 192,
+    "distance_meters": 3949,
+    "date": "2022-07-09T12:50:09"
+  },
+  {
+    "_id": "6c2d38b1-e9d5-4ead-963d-3c08c126fb6b",
+    "duration_seconds": 6605,
+    "distance_meters": 7320,
+    "date": "2018-12-31T10:01:45"
+  },
+  {
+    "_id": "9e97b1d8-87e8-45d7-9332-acfc6906e55f",
+    "duration_seconds": 5403,
+    "distance_meters": 825,
+    "date": "2022-02-27T05:47:26"
+  },
+  {
+    "_id": "383915d6-1c4d-40f1-9d01-1069428b740e",
+    "duration_seconds": 1897,
+    "distance_meters": 6266,
+    "date": "2018-04-16T03:04:37"
+  },
+  {
+    "_id": "7912fb5d-1f0c-4c46-81df-772067f66357",
+    "duration_seconds": 4813,
+    "distance_meters": 3114,
+    "date": "2018-11-28T03:14:55"
+  },
+  {
+    "_id": "7917a451-639f-45a6-980e-a90be14df63e",
+    "duration_seconds": 9153,
+    "distance_meters": 7829,
+    "date": "2018-07-17T12:19:42"
+  },
+  {
+    "_id": "e5cad454-35de-4905-88bf-ee203742e362",
+    "duration_seconds": 261,
+    "distance_meters": 3691,
+    "date": "2020-12-14T01:04:22"
+  },
+  {
+    "_id": "a7cd3d48-e1b7-4ba3-b863-14affd980dd2",
+    "duration_seconds": 1818,
+    "distance_meters": 9188,
+    "date": "2023-01-20T04:38:36"
+  },
+  {
+    "_id": "9fc275bb-aa03-4e65-b1d9-1e3df8b9e4e3",
+    "duration_seconds": 4489,
+    "distance_meters": 4301,
+    "date": "2022-04-11T07:47:11"
+  },
+  {
+    "_id": "9c2cac8a-093b-4bd9-a25a-67e68186d0ac",
+    "duration_seconds": 8497,
+    "distance_meters": 1690,
+    "date": "2019-08-12T10:04:18"
+  },
+  {
+    "_id": "5615a16b-bb46-4269-9f69-222b326216cb",
+    "duration_seconds": 7456,
+    "distance_meters": 7383,
+    "date": "2018-11-17T05:02:12"
+  },
+  {
+    "_id": "0598f5ce-4776-42db-a57c-529009168fef",
+    "duration_seconds": 8522,
+    "distance_meters": 9794,
+    "date": "2020-11-24T07:47:29"
+  },
+  {
+    "_id": "c986a423-a6de-45b5-9a92-bae4b86f7fc7",
+    "duration_seconds": 9350,
+    "distance_meters": 9392,
+    "date": "2022-03-22T10:45:28"
+  },
+  {
+    "_id": "7b77c82b-ac23-4ce3-9fb9-ed2c49a26900",
+    "duration_seconds": 10166,
+    "distance_meters": 3633,
+    "date": "2022-07-08T05:18:43"
+  },
+  {
+    "_id": "bd30d159-43ca-4da4-882e-d8dd599b260e",
+    "duration_seconds": 3652,
+    "distance_meters": 7105,
+    "date": "2019-08-26T11:58:43"
+  },
+  {
+    "_id": "c13e8ee7-8a84-4690-beef-d6605de4a93e",
+    "duration_seconds": 3256,
+    "distance_meters": 9517,
+    "date": "2020-05-28T06:35:13"
+  },
+  {
+    "_id": "30bcc963-9325-4de0-8e32-e7f988394133",
+    "duration_seconds": 412,
+    "distance_meters": 176,
+    "date": "2018-08-01T01:54:56"
+  },
+  {
+    "_id": "7322477f-8e3d-45d5-8141-b20dbe1dde7e",
+    "duration_seconds": 8477,
+    "distance_meters": 4898,
+    "date": "2018-12-16T12:30:33"
+  },
+  {
+    "_id": "e421d9c5-34be-437e-89e4-5040446bc6d9",
+    "duration_seconds": 2616,
+    "distance_meters": 7568,
+    "date": "2018-05-20T04:11:02"
+  },
+  {
+    "_id": "6cf35cef-7630-4b16-90f5-783cfc2f796b",
+    "duration_seconds": 4713,
+    "distance_meters": 2635,
+    "date": "2020-10-18T02:26:18"
+  },
+  {
+    "_id": "eea8752e-20c1-4493-bdf8-267da4b75409",
+    "duration_seconds": 5863,
+    "distance_meters": 8200,
+    "date": "2019-08-07T03:17:27"
+  },
+  {
+    "_id": "0fe7f317-6769-4b0d-9181-da005b14a58a",
+    "duration_seconds": 5859,
+    "distance_meters": 8488,
+    "date": "2021-06-07T08:33:04"
+  },
+  {
+    "_id": "ca938c53-b3fa-4596-a14a-effe226df16f",
+    "duration_seconds": 10170,
+    "distance_meters": 647,
+    "date": "2021-10-17T01:59:27"
+  },
+  {
+    "_id": "4d6cf8a0-57d8-45bf-96e1-74a7f38c938b",
+    "duration_seconds": 2259,
+    "distance_meters": 7535,
+    "date": "2021-09-18T10:18:53"
+  },
+  {
+    "_id": "60591642-473b-43fa-9fcd-424c242df4a8",
+    "duration_seconds": 5968,
+    "distance_meters": 7963,
+    "date": "2022-12-23T06:33:56"
+  },
+  {
+    "_id": "7c5337e2-3dc9-4bd5-ac68-9160d45a9b11",
+    "duration_seconds": 9349,
+    "distance_meters": 525,
+    "date": "2022-05-13T01:54:03"
+  },
+  {
+    "_id": "464db954-5f69-4392-b1be-3d5b10abaf3d",
+    "duration_seconds": 586,
+    "distance_meters": 6671,
+    "date": "2021-04-01T05:11:01"
+  },
+  {
+    "_id": "3ed10a09-5dee-47a3-b203-3adf3d294ae9",
+    "duration_seconds": 1181,
+    "distance_meters": 2652,
+    "date": "2022-01-02T06:09:16"
+  },
+  {
+    "_id": "1b91a2be-b8c7-47ed-a87c-a706fbb374f2",
+    "duration_seconds": 7754,
+    "distance_meters": 9084,
+    "date": "2023-01-12T04:04:53"
+  },
+  {
+    "_id": "47889f9b-d14a-44e0-9ad6-89790b740c8e",
+    "duration_seconds": 7991,
+    "distance_meters": 3667,
+    "date": "2021-07-20T03:54:31"
+  },
+  {
+    "_id": "84cc83b4-56f9-4d49-a835-57da708bb5a6",
+    "duration_seconds": 9210,
+    "distance_meters": 9125,
+    "date": "2020-04-06T12:04:48"
+  },
+  {
+    "_id": "a60483cd-6e26-4f9a-8fd6-4dff0bac8e54",
+    "duration_seconds": 9291,
+    "distance_meters": 4556,
+    "date": "2021-12-28T06:37:22"
+  },
+  {
+    "_id": "3c2d0904-441a-492f-a5ae-8cc9095aa5e5",
+    "duration_seconds": 8112,
+    "distance_meters": 9047,
+    "date": "2023-02-17T11:01:51"
+  },
+  {
+    "_id": "ac683c43-1da5-4a48-98b1-1e649842e67d",
+    "duration_seconds": 9165,
+    "distance_meters": 9364,
+    "date": "2020-09-14T04:50:39"
+  },
+  {
+    "_id": "b3f5abbe-1111-4a0a-8bf6-0c9ad488ccd8",
+    "duration_seconds": 1692,
+    "distance_meters": 2915,
+    "date": "2019-08-23T08:03:19"
+  },
+  {
+    "_id": "041fb578-2512-42e7-9ace-c6863ce53705",
+    "duration_seconds": 251,
+    "distance_meters": 9385,
+    "date": "2021-11-12T03:54:57"
+  },
+  {
+    "_id": "ff387992-8149-4e0a-90d6-80456a446d74",
+    "duration_seconds": 712,
+    "distance_meters": 2231,
+    "date": "2019-05-23T10:47:00"
+  },
+  {
+    "_id": "89887ab9-534a-40b9-9876-e604593e96ce",
+    "duration_seconds": 3819,
+    "distance_meters": 6189,
+    "date": "2021-10-21T08:37:35"
+  },
+  {
+    "_id": "06ea11f3-6bfb-4e76-a45f-e8ce17e7ae86",
+    "duration_seconds": 2767,
+    "distance_meters": 8696,
+    "date": "2021-10-11T06:59:51"
+  },
+  {
+    "_id": "16c31584-d187-4046-b54d-6b9763bf29b8",
+    "duration_seconds": 2988,
+    "distance_meters": 1063,
+    "date": "2019-12-14T07:53:50"
+  },
+  {
+    "_id": "02183858-6276-4d12-afbe-19ae8ddc0c2f",
+    "duration_seconds": 8628,
+    "distance_meters": 402,
+    "date": "2019-10-25T01:43:18"
+  },
+  {
+    "_id": "1a95142d-5407-45e6-be27-a91f56ad4ddf",
+    "duration_seconds": 3667,
+    "distance_meters": 3082,
+    "date": "2018-06-12T12:25:18"
+  },
+  {
+    "_id": "9ca46caa-8802-4e70-921f-aab57d15fd82",
+    "duration_seconds": 933,
+    "distance_meters": 8983,
+    "date": "2022-04-09T04:44:55"
+  },
+  {
+    "_id": "ae565663-4b28-4f21-a572-53d4ebd4dc5e",
+    "duration_seconds": 8954,
+    "distance_meters": 3089,
+    "date": "2021-01-26T04:12:19"
+  },
+  {
+    "_id": "cddd313a-9ef8-4c6b-a986-2ef9929878ab",
+    "duration_seconds": 10150,
+    "distance_meters": 1236,
+    "date": "2018-06-27T03:21:07"
+  },
+  {
+    "_id": "54cc978e-a61a-4904-96ce-7893df057638",
+    "duration_seconds": 5173,
+    "distance_meters": 8373,
+    "date": "2018-10-20T09:05:22"
+  },
+  {
+    "_id": "27a1d06a-9cd9-4e30-af1e-90713bacdbb6",
+    "duration_seconds": 4326,
+    "distance_meters": 729,
+    "date": "2023-03-14T09:42:05"
+  },
+  {
+    "_id": "fd02b108-3ed9-4e25-9ecf-ba8dae574ec5",
+    "duration_seconds": 7528,
+    "distance_meters": 2819,
+    "date": "2020-06-27T06:14:45"
+  },
+  {
+    "_id": "a33bc8ba-d02e-4aa9-9d7f-bdbb32a2599b",
+    "duration_seconds": 7546,
+    "distance_meters": 8006,
+    "date": "2019-11-12T08:40:03"
+  },
+  {
+    "_id": "1b469deb-bfc9-425f-9d3d-62b39801d6e3",
+    "duration_seconds": 6913,
+    "distance_meters": 6981,
+    "date": "2022-08-13T03:01:06"
+  }
+]
