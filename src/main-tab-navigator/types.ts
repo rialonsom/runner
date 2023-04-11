@@ -1,11 +1,11 @@
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import {
-  CompositeNavigationProp,
+  CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackNavigationProp } from '../root-stack-navigator';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RunDisplayData } from '../../data/getRunsDisplayData';
+import { RootStackScreenProps } from '../root-stack-navigator';
 
 // Runs stack navigation
 export type RunsStackParamList = {
@@ -13,18 +13,18 @@ export type RunsStackParamList = {
   RunList: undefined;
   RunDetail: { run: RunDisplayData };
 };
-export type RunsStackNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<RunsStackParamList>,
-  MainTabNavigationProp
+export type RunsStackScreenProps = CompositeScreenProps<
+  NativeStackScreenProps<RunsStackParamList>,
+  MainTabScreenProps
 >;
 
 // Summary stack navigation
 export type SummaryStackParamList = {
   Summary: undefined;
 };
-export type SummaryStackNavigationProp = CompositeNavigationProp<
-  NativeStackNavigationProp<SummaryStackParamList>,
-  MainTabNavigationProp
+export type SummaryStackScreenProps = CompositeScreenProps<
+  NativeStackScreenProps<SummaryStackParamList>,
+  MainTabScreenProps
 >;
 
 // Main tab navigation
@@ -32,7 +32,7 @@ export type MainTabParamList = {
   RunsTab: NavigatorScreenParams<RunsStackParamList>;
   SummaryTab: NavigatorScreenParams<SummaryStackParamList>;
 };
-export type MainTabNavigationProp = CompositeNavigationProp<
-  BottomTabNavigationProp<MainTabParamList>,
-  RootStackNavigationProp
+export type MainTabScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<MainTabParamList>,
+  RootStackScreenProps
 >;

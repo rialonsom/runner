@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native';
-import { RunsStackNavigationProp } from '../main-tab-navigator';
+import { RunsStackScreenProps } from '../main-tab-navigator';
 
 export function RunListHeaderRight() {
-  const navigation = useNavigation<RunsStackNavigationProp>();
+  const navigation = useNavigation<RunsStackScreenProps['navigation']>();
   return (
     <Button
       title="New run"

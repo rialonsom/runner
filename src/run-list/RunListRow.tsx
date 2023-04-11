@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RunDisplayData } from '../../data/getRunsDisplayData';
-import { RunsStackNavigationProp } from '../main-tab-navigator';
+import { RunsStackScreenProps } from '../main-tab-navigator';
 
 export function RunListRow(props: {
   run: RunDisplayData;
   index: number;
-  navigation: RunsStackNavigationProp;
+  navigation: RunsStackScreenProps['navigation'];
 }) {
   const containerStyle = [
     styles.container,
