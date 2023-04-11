@@ -18,7 +18,13 @@ export function getRunsDisplayData(): RunDisplayData[] {
     );
 
     const distance = (run.distance_meters / 1000).toFixed(2);
-    const date = new Date(run.date).toLocaleDateString();
+    const date = new Date(run.date).toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    });
 
     return {
       date,
