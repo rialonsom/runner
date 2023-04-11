@@ -7,15 +7,20 @@ const RootStack = createNativeStackNavigator();
 
 export function RootStackNavigator() {
   return (
-    <RootStack.Navigator screenOptions={{ headerShown: false }}>
-      <RootStack.Group>
+    <RootStack.Navigator>
+      <RootStack.Group screenOptions={{ headerShown: false }}>
         <RootStack.Screen
           name="MainTabNavigator"
           component={MainTabNavigator}
         />
       </RootStack.Group>
-      <RootStack.Group screenOptions={{ presentation: 'modal' }}>
-        <RootStack.Screen name="RunCreation" component={RunCreation} />
+      <RootStack.Group
+        screenOptions={{ presentation: 'modal', headerShown: true }}>
+        <RootStack.Screen
+          name="RunCreation"
+          component={RunCreation}
+          options={{ title: 'New run' }}
+        />
       </RootStack.Group>
     </RootStack.Navigator>
   );

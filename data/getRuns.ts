@@ -2,19 +2,21 @@ import { storage } from './storage';
 import data from './runs.json';
 
 export type Run = {
-  id: string;
+  _id: string;
   duration_seconds: number;
   distance_meters: number;
   date: Date;
 };
 
 export function getRuns(): Run[] {
+  let runsJson;
   if (storage.contains('user.runs')) {
-    const runsJson = storage.getString('user.runs');
-    const runs = JSON.parse(runsJson ?? '[]');
-    return runs;
+    runsJson = JSON.parse(storage.getString('user.runs') ?? '[]');
+  } else {
+    runsJson = data;
   }
-  const runs = data.map(run => {
+
+  const runs = runsJson.map((run: Run) => {
     return {
       id: run._id,
       duration_seconds: run.duration_seconds,
@@ -22,7 +24,8 @@ export function getRuns(): Run[] {
       date: new Date(run.date),
     };
   });
-  storage.set('user.runs', JSON.stringify(runs));
+
+  runs.sort((a: Run, b: Run) => b.date.getTime() - a.date.getTime());
 
   return runs;
 }
