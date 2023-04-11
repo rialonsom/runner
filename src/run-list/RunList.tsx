@@ -1,29 +1,21 @@
 import React from 'react';
-import {
-  FlatList,
-  ListRenderItemInfo,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import { FlatList, ListRenderItemInfo } from 'react-native';
 import {
   RunDisplayData,
   getRunsDisplayData,
 } from '../../data/getRunsDisplayData';
+import { RunListRow } from './RunListRow';
 import { useNavigation } from '@react-navigation/native';
 import { RunsStackNavigationProp } from '../main-tab-navigator';
 
 export function RunList() {
-  const navigation = useNavigation<RunsStackNavigationProp>();
   const runs = getRunsDisplayData();
+  const navigation = useNavigation<RunsStackNavigationProp>();
 
-  const renderItem = (item: ListRenderItemInfo<RunDisplayData>) => {
-    const run = item.item;
+  const renderItem = ({ item, index }: ListRenderItemInfo<RunDisplayData>) => {
+    const run = item;
 
-    return (
-      <TouchableOpacity onPress={() => navigation.navigate('RunDetail')}>
-        <Text>{run.date}</Text>
-      </TouchableOpacity>
-    );
+    return <RunListRow run={run} index={index} navigation={navigation} />;
   };
 
   return <FlatList data={runs} renderItem={renderItem} />;

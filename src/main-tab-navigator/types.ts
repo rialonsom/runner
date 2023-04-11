@@ -5,12 +5,13 @@ import {
 } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackNavigationProp } from '../root-stack-navigator';
+import { RunDisplayData } from '../../data/getRunsDisplayData';
 
 // Runs stack navigation
 export type RunsStackParamList = {
   NewAppScreen: undefined;
   RunList: undefined;
-  RunDetail: undefined;
+  RunDetail: { run: RunDisplayData };
 };
 export type RunsStackNavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<RunsStackParamList>,

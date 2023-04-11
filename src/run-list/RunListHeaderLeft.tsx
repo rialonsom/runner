@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from 'react-native';
 import { RunsStackNavigationProp } from '../main-tab-navigator';
 
-export function RunListHeaderLeft() {
+export function RunListHeaderRight() {
   const navigation = useNavigation<RunsStackNavigationProp>();
   return (
     <Button

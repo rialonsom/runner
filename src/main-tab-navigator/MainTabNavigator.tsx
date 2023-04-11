@@ -1,7 +1,7 @@
 import React from 'react';
 import { NewAppScreen } from '../new-app-screen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RunList, RunListHeaderLeft } from '../run-list';
+import { RunList, RunListHeaderRight } from '../run-list';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Summary } from '../summary';
 import { RunDetail } from '../run-detail';
@@ -19,7 +19,7 @@ function RunsStackScreen() {
       <RunsStack.Screen
         name="RunList"
         component={RunList}
-        options={{ headerLeft: RunListHeaderLeft }}
+        options={{ headerRight: RunListHeaderRight, title: 'My runs' }}
       />
       <RunsStack.Screen name="RunDetail" component={RunDetail} />
     </RunsStack.Navigator>
@@ -39,8 +39,16 @@ const MainTab = createBottomTabNavigator<MainTabParamList>();
 export function MainTabNavigator() {
   return (
     <MainTab.Navigator screenOptions={{ headerShown: false }}>
-      <MainTab.Screen name="RunsTab" component={RunsStackScreen} />
-      <MainTab.Screen name="SummaryTab" component={SummaryStackScreen} />
+      <MainTab.Screen
+        name="RunsTab"
+        component={RunsStackScreen}
+        options={{ title: 'My runs' }}
+      />
+      <MainTab.Screen
+        name="SummaryTab"
+        component={SummaryStackScreen}
+        options={{ title: 'Summary' }}
+      />
     </MainTab.Navigator>
   );
 }
