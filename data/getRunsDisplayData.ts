@@ -17,7 +17,7 @@ export function getRunsDisplayData(): RunDisplayData[] {
       (run.duration_seconds / 60 / (run.distance_meters / 1000)) * 60 * 1000,
     );
 
-    const distance = (run.distance_meters / 1000).toFixed(2);
+    const distance = (run.distance_meters / 1000).toFixed(2) + ' km';
     const date = new Date(run.date).toLocaleString(undefined, {
       year: 'numeric',
       month: 'long',

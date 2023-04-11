@@ -19,7 +19,7 @@ export function RunListRow(props: {
         props.navigation.navigate('RunDetail', { run: props.run })
       }>
       <View style={containerStyle}>
-        <Text style={styles.distance}>{props.run.distance} km</Text>
+        <Text style={styles.distance}>{props.run.distance}</Text>
         <Text style={styles.date}>{props.run.date}</Text>
       </View>
     </TouchableOpacity>

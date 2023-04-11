@@ -11,7 +11,7 @@ export function RunDetail() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Distance</Text>
-      <Text style={styles.value}>{run.distance} km</Text>
+      <Text style={styles.value}>{run.distance}</Text>
       <RunnerDivider />
       <Text style={styles.title}>Duration</Text>
       <Text style={styles.value}>{run.duration}</Text>
