@@ -8,13 +8,13 @@ import {
   Text,
   TextInput,
 } from 'react-native';
-import { RootStackNavigationProp } from '../root-stack-navigator';
+import { RootStackScreenProps } from '../root-stack-navigator';
 import { RunnerView, RunnerInputGroup, RunnerDivider } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
 import { addRun } from '../../data/addRun';
 
 export function RunCreation() {
-  const navigation = useNavigation<RootStackNavigationProp>();
+  const navigation = useNavigation<RootStackScreenProps['navigation']>();
 
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
