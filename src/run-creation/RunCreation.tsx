@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import {
   Alert,
   Button,
@@ -11,10 +11,11 @@ import {
 import { RootStackScreenProps } from '../root-stack-navigator';
 import { RunnerView, RunnerInputGroup, RunnerDivider } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
-import { addRun } from '../../data/addRun';
+import { RunDataContext, RunDataReducerAction } from '../data/RunDataProvider';
 
 export function RunCreation() {
   const navigation = useNavigation<RootStackScreenProps['navigation']>();
+  const { dispatch: runDataDispatch } = useContext(RunDataContext);
 
   const [distance, setDistance] = useState('');
   const [duration, setDuration] = useState('');
@@ -38,9 +39,9 @@ export function RunCreation() {
       date: date,
     };
 
-    addRun(run);
+    runDataDispatch({ action: RunDataReducerAction.Add, data: run });
     navigation.goBack();
-  }, [date, distance, duration, navigation]);
+  }, [date, distance, duration, navigation, runDataDispatch]);
 
   useEffect(() => {
     const headerLeft = () => (

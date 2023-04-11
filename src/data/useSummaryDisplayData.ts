@@ -1,13 +1,15 @@
-import { getRuns } from './getRuns';
+import { useContext } from 'react';
 import format from 'format-duration';
+import { RunDataContext } from './RunDataProvider';
 
 export type SummaryDisplayData = {
   totalDistance: string;
   avgDuration: string;
 };
 
-export function getSummaryDisplayData() {
-  const runs = getRuns();
+export function useSummaryDisplayData() {
+  const { state } = useContext(RunDataContext);
+  const runs = state;
 
   const totalDistance = (
     runs.reduce((acc, cur) => acc + cur.distance_meters, 0) / 1000

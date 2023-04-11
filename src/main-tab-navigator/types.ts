@@ -4,7 +4,7 @@ import {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RunDisplayData } from '../../data/getRunsDisplayData';
+import { RunDisplayData } from '../data/useRunsDisplayData';
 import { RootStackScreenProps } from '../root-stack-navigator';
 
 // Runs stack navigation

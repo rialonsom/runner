@@ -1,5 +1,6 @@
-import { getRuns } from './getRuns';
+import { useContext } from 'react';
 import format from 'format-duration';
+import { RunDataContext } from './RunDataProvider';
 
 export type RunDisplayData = {
   date: string;
@@ -8,8 +9,8 @@ export type RunDisplayData = {
   pace: string;
 };
 
-export function getRunsDisplayData(): RunDisplayData[] {
-  const rawRuns = getRuns();
+export function useRunsDisplayData(): RunDisplayData[] {
+  const { state: rawRuns } = useContext(RunDataContext);
 
   const runs = rawRuns.map(run => {
     const duration = format(run.duration_seconds * 1000);

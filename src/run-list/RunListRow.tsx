@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RunDisplayData } from '../../data/getRunsDisplayData';
+import { RunDisplayData } from '../data/useRunsDisplayData';
 import { RunsStackScreenProps } from '../main-tab-navigator';
 
 export function RunListRow(props: {

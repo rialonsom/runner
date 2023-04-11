@@ -1,5 +1,5 @@
 import { storage } from './storage';
-import data from './runs.json';
+import data from '../json/runs.json';
 
 export type Run = {
   _id: string;
@@ -18,7 +18,7 @@ export function getRuns(): Run[] {
 
   const runs = runsJson.map((run: Run) => {
     return {
-      id: run._id,
+      _id: run._id,
       duration_seconds: run.duration_seconds,
       distance_meters: run.distance_meters,
       date: new Date(run.date),

@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RunnerDivider } from '../ui-components';
-import { getSummaryDisplayData } from '../../data/getSummaryDisplayData';
+import { useSummaryDisplayData } from '../data/useSummaryDisplayData';
 
 export function Summary() {
-  const summaryDisplayData = getSummaryDisplayData();
+  const summaryDisplayData = useSummaryDisplayData();
 
   return (
     <View style={styles.container}>

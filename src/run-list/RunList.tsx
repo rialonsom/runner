@@ -1,15 +1,12 @@
 import React from 'react';
 import { FlatList, ListRenderItemInfo } from 'react-native';
-import {
-  RunDisplayData,
-  getRunsDisplayData,
-} from '../../data/getRunsDisplayData';
+import { RunDisplayData, useRunsDisplayData } from '../data/useRunsDisplayData';
 import { RunListRow } from './RunListRow';
 import { useNavigation } from '@react-navigation/native';
 import { RunsStackScreenProps } from '../main-tab-navigator';
 
 export function RunList() {
-  const runs = getRunsDisplayData();
+  const runs = useRunsDisplayData();
   const navigation = useNavigation<RunsStackScreenProps['navigation']>();
 
   const renderItem = ({ item, index }: ListRenderItemInfo<RunDisplayData>) => {
