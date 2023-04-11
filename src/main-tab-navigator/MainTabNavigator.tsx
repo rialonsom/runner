@@ -21,7 +21,11 @@ function RunsStackScreen() {
         component={RunList}
         options={{ headerRight: RunListHeaderRight, title: 'My runs' }}
       />
-      <RunsStack.Screen name="RunDetail" component={RunDetail} />
+      <RunsStack.Screen
+        name="RunDetail"
+        component={RunDetail}
+        options={{ title: 'Run details' }}
+      />
     </RunsStack.Navigator>
   );
 }
