@@ -11,7 +11,7 @@ import {
 } from './types';
 
 const RunsStack = createNativeStackNavigator<RunsStackParamList>();
-function RunsStackScreen() {
+function RunsStackNavigator() {
   return (
     <RunsStack.Navigator initialRouteName="RunList">
       <RunsStack.Screen
@@ -29,7 +29,7 @@ function RunsStackScreen() {
 }
 
 const SummaryStack = createNativeStackNavigator<SummaryStackParamList>();
-function SummaryStackScreen() {
+function SummaryStackNavigator() {
   return (
     <SummaryStack.Navigator initialRouteName="Summary">
       <SummaryStack.Screen name="Summary" component={Summary} />
@@ -43,12 +43,12 @@ export function MainTabNavigator() {
     <MainTab.Navigator screenOptions={{ headerShown: false }}>
       <MainTab.Screen
         name="RunsTab"
-        component={RunsStackScreen}
+        component={RunsStackNavigator}
         options={{ title: 'My runs' }}
       />
       <MainTab.Screen
         name="SummaryTab"
-        component={SummaryStackScreen}
+        component={SummaryStackNavigator}
         options={{ title: 'Summary' }}
       />
     </MainTab.Navigator>
