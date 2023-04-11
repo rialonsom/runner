@@ -1,5 +1,4 @@
 import React from 'react';
-import { NewAppScreen } from '../new-app-screen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RunList, RunListHeaderRight } from '../run-list';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -15,7 +14,6 @@ const RunsStack = createNativeStackNavigator<RunsStackParamList>();
 function RunsStackScreen() {
   return (
     <RunsStack.Navigator initialRouteName="RunList">
-      <RunsStack.Screen name="NewAppScreen" component={NewAppScreen} />
       <RunsStack.Screen
         name="RunList"
         component={RunList}
