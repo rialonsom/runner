@@ -11,9 +11,10 @@ export function useSummaryDisplayData() {
   const { state } = useContext(RunDataContext);
   const runs = state;
 
-  const totalDistance = (
-    runs.reduce((acc, cur) => acc + cur.distance_meters, 0) / 1000
-  ).toFixed(2);
+  const totalDistance =
+    (runs.reduce((acc, cur) => acc + cur.distance_meters, 0) / 1000).toFixed(
+      2,
+    ) + ' km';
 
   const avgDuration = format(
     (runs.reduce((acc, cur) => acc + cur.duration_seconds, 0) / runs.length) *
