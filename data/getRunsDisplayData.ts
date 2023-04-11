@@ -12,10 +12,11 @@ export function getRunsDisplayData(): RunDisplayData[] {
   const rawRuns = getRuns();
 
   const runs = rawRuns.map(run => {
-    const duration = format(run.duration_seconds);
+    const duration = format(run.duration_seconds * 1000);
     const pace = format(
-      run.duration_seconds / 60 / (run.distance_meters / 1000),
+      (run.duration_seconds / 60 / (run.distance_meters / 1000)) * 60 * 1000,
     );
+
     const distance = (run.distance_meters / 1000).toFixed(2);
     const date = new Date(run.date).toLocaleDateString();
 
