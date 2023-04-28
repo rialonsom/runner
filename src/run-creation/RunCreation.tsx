@@ -1,5 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {
   Alert,
   Button,
@@ -8,18 +14,44 @@ import {
   Text,
   TextInput,
 } from 'react-native';
-import { RootStackScreenProps } from '../root-stack-navigator';
+import {
+  RootStackParamList,
+  RootStackScreenProps,
+} from '../root-stack-navigator';
 import { RunnerView, RunnerInputGroup, RunnerDivider } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
 import { RunDataContext, RunDataReducerAction } from '../data/RunDataProvider';
+import { getRun } from '../data/storage/getRun';
 
 export function RunCreation() {
   const navigation = useNavigation<RootStackScreenProps['navigation']>();
+  const route = useRoute<RouteProp<RootStackParamList, 'RunCreation'>>();
+
+  const editRun = useMemo(() => {
+    const isEditMode = route.params !== undefined;
+    if (!isEditMode) {
+      return;
+    }
+
+    const run = getRun(route.params.runId);
+    if (!run) {
+      return;
+    }
+
+    return {
+      _id: run._id,
+      distance: run.distance_meters.toString(),
+      duration: (run.duration_seconds / 60).toString(),
+      date: run.date,
+    };
+  }, [route.params]);
+  const isEdit = editRun !== undefined;
+
   const { dispatch: runDataDispatch } = useContext(RunDataContext);
 
-  const [distance, setDistance] = useState('');
-  const [duration, setDuration] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [distance, setDistance] = useState(editRun?.distance ?? '');
+  const [duration, setDuration] = useState(editRun?.duration ?? '');
+  const [date, setDate] = useState(editRun?.date ?? new Date());
 
   const [datePickerOpen, setDatePickerOpen] = useState(false);
 
@@ -27,29 +59,44 @@ export function RunCreation() {
     if (distance.length === 0 || duration.length === 0) {
       Alert.alert(
         'Missing fields',
-        'You must complete every field before adding a new run.',
+        'You must complete every field before continuing.',
         [{ text: 'Ok' }],
       );
       return;
     }
 
     const run = {
+      _id: editRun?._id ?? '',
       duration_seconds: parseInt(duration, 10) * 60,
       distance_meters: parseInt(distance, 10),
       date: date,
     };
 
-    runDataDispatch({ action: RunDataReducerAction.Add, data: run });
+    runDataDispatch({
+      action: isEdit ? RunDataReducerAction.Edit : RunDataReducerAction.Add,
+      data: run,
+    });
     navigation.goBack();
-  }, [date, distance, duration, navigation, runDataDispatch]);
+  }, [
+    date,
+    distance,
+    duration,
+    editRun?._id,
+    isEdit,
+    navigation,
+    runDataDispatch,
+  ]);
 
   useEffect(() => {
     const headerLeft = () => (
       <Button title="Cancel" onPress={() => navigation.goBack()} />
     );
-    const headerRight = () => <Button title="Add" onPress={onPressDone} />;
-    navigation.setOptions({ headerLeft, headerRight });
-  }, [navigation, onPressDone]);
+    const headerRight = () => (
+      <Button title={isEdit ? 'Done' : 'Add'} onPress={onPressDone} />
+    );
+    const title = isEdit ? 'Edit run' : 'New run';
+    navigation.setOptions({ title, headerLeft, headerRight });
+  }, [isEdit, navigation, onPressDone]);
 
   return (
     <RunnerView>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RunDisplayData } from '../data/useRunsDisplayData';
+import { RunDisplayData } from '../data/useRunListDisplayData';
 import { RunsStackScreenProps } from '../main-tab-navigator';
 
 export function RunListRow(props: {
@@ -16,7 +16,7 @@ export function RunListRow(props: {
   return (
     <TouchableOpacity
       onPress={() =>
-        props.navigation.navigate('RunDetail', { run: props.run })
+        props.navigation.navigate('RunDetail', { runId: props.run._id })
       }>
       <View style={containerStyle}>
         <Text style={styles.distance}>{props.run.distance}</Text>

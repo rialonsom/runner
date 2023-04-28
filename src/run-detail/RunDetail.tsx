@@ -3,10 +3,20 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RunsStackParamList } from '../main-tab-navigator';
 import { RunnerDivider } from '../ui-components';
+import { useRunDetailData } from '../data/useRunDetailData';
 
 export function RunDetail() {
   const route = useRoute<RouteProp<RunsStackParamList, 'RunDetail'>>();
-  const { run } = route.params;
+  const { runId } = route.params;
+  const run = useRunDetailData(runId);
+
+  if (run === undefined) {
+    return (
+      <View style={styles.container}>
+        <Text>Error</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
