@@ -4,14 +4,13 @@ import {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RunDisplayData } from '../data/useRunsDisplayData';
 import { RootStackScreenProps } from '../root-stack-navigator';
 
 // Runs stack navigation
 export type RunsStackParamList = {
   NewAppScreen: undefined;
   RunList: undefined;
-  RunDetail: { run: RunDisplayData };
+  RunDetail: { runId: string };
 };
 export type RunsStackScreenProps = CompositeScreenProps<
   NativeStackScreenProps<RunsStackParamList>,

@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RunList, RunListHeaderRight } from '../run-list';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Summary } from '../summary';
-import { RunDetail } from '../run-detail';
+import { RunDetail, RunDetailHeaderRight } from '../run-detail';
 import {
   MainTabParamList,
   RunsStackParamList,
@@ -22,7 +22,10 @@ function RunsStackNavigator() {
       <RunsStack.Screen
         name="RunDetail"
         component={RunDetail}
-        options={{ title: 'Run details' }}
+        options={{
+          title: 'Run details',
+          headerRight: RunDetailHeaderRight,
+        }}
       />
     </RunsStack.Navigator>
   );

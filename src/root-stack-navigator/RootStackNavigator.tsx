@@ -16,11 +16,7 @@ export function RootStackNavigator() {
       </RootStack.Group>
       <RootStack.Group
         screenOptions={{ presentation: 'modal', headerShown: true }}>
-        <RootStack.Screen
-          name="RunCreation"
-          component={RunCreation}
-          options={{ title: 'New run' }}
-        />
+        <RootStack.Screen name="RunCreation" component={RunCreation} />
       </RootStack.Group>
     </RootStack.Navigator>
   );
