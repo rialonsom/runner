@@ -2,13 +2,13 @@ import { Run, getRuns } from './getRuns';
 import uuid from 'react-native-uuid';
 import { storage } from './storage';
 
-export function addRun(run: Omit<Run, '_id'>): Run[] {
+export function addRun(run: Run): Run[] {
   const runs = getRuns();
 
   const _id = uuid.v4() as string;
   const newRun = {
-    _id,
     ...run,
+    _id,
   };
 
   const newRuns = [newRun, ...runs];
