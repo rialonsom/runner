@@ -1,33 +1,34 @@
 import React, { useMemo, useReducer } from 'react';
 import { Run, getRuns } from './storage/getRuns';
 import { addRun } from './storage/addRun';
+import { editRun } from './storage/editRun';
 
 export type RunDataContextValue = {
   state: Run[];
   dispatch: React.Dispatch<{
     action: RunDataReducerAction;
-    data: Omit<Run, '_id'>;
+    data: Run;
   }>;
 };
 
 export const RunDataContext = React.createContext({
   state: [] as Run[],
-  dispatch: ({}: {
-    action: RunDataReducerAction;
-    data: Omit<Run, '_id'>;
-  }) => {},
+  dispatch: ({}: { action: RunDataReducerAction; data: Run }) => {},
 });
 
 export enum RunDataReducerAction {
   Add,
+  Edit,
 }
 
 function runDataReducer(
   state: Run[],
-  { action, data }: { action: RunDataReducerAction; data: Omit<Run, '_id'> },
+  { action, data }: { action: RunDataReducerAction; data: Run },
 ) {
   if (action === RunDataReducerAction.Add) {
     return addRun(data);
+  } else if (action === RunDataReducerAction.Edit) {
+    return editRun(data);
   }
   return state;
 }
