@@ -2,6 +2,7 @@ import React, { useMemo, useReducer } from 'react';
 import { Run, getRuns } from './storage/getRuns';
 import { addRun } from './storage/addRun';
 import { editRun } from './storage/editRun';
+import { deleteRun } from './storage/deleteRun';
 
 export type RunDataContextValue = {
   state: Run[];
@@ -19,6 +20,7 @@ export const RunDataContext = React.createContext({
 export enum RunDataReducerAction {
   Add,
   Edit,
+  Delete,
 }
 
 function runDataReducer(
@@ -29,6 +31,8 @@ function runDataReducer(
     return addRun(data);
   } else if (action === RunDataReducerAction.Edit) {
     return editRun(data);
+  } else if (action === RunDataReducerAction.Delete) {
+    return deleteRun(data);
   }
   return state;
 }
