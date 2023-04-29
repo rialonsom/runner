@@ -1,7 +1,15 @@
 import React from 'react';
-import { FlatList, ListRenderItemInfo } from 'react-native';
+import {
+  ListRenderItemInfo,
+  SectionList,
+  SectionListData,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {
   RunDisplayData,
+  RunListSection,
   useRunListDisplayData,
 } from '../data/useRunListDisplayData';
 import { RunListRow } from './RunListRow';
@@ -18,5 +26,31 @@ export function RunList() {
     return <RunListRow run={run} index={index} navigation={navigation} />;
   };
 
-  return <FlatList data={runs} renderItem={renderItem} />;
+  const renderSectionHeader = (info: {
+    section: SectionListData<RunDisplayData, RunListSection>;
+  }) => {
+    return (
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionHeaderTitle}>{info.section.title}</Text>
+      </View>
+    );
+  };
+
+  return (
+    <SectionList
+      sections={runs}
+      renderItem={renderItem}
+      renderSectionHeader={renderSectionHeader}
+    />
+  );
 }
+
+const styles = StyleSheet.create({
+  sectionHeader: {
+    padding: 8,
+    backgroundColor: 'white',
+  },
+  sectionHeaderTitle: {
+    fontSize: 18,
+  },
+});
