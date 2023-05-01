@@ -1,34 +1,32 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { RunnerDivider } from '../ui-components';
-import { useSummaryDisplayData } from './useSummaryDisplayData';
+import React, { useState } from 'react';
+import { SceneMap, TabView } from 'react-native-tab-view';
+import { SummaryAllTab } from './SummaryAllTab';
+import { useWindowDimensions } from 'react-native';
+import { SummaryYearTab } from './SummaryYearTab';
+import { SummaryMonthTab } from './SummaryMonthTab';
+
+const renderScene = SceneMap({
+  all: SummaryAllTab,
+  year: SummaryYearTab,
+  month: SummaryMonthTab,
+});
 
 export function Summary() {
-  const summaryDisplayData = useSummaryDisplayData();
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = useState(0);
+  const routes = [
+    { key: 'month', title: 'Month' },
+    { key: 'year', title: 'Year' },
+    { key: 'all', title: 'All' },
+  ];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Total distance</Text>
-      <Text style={styles.value}>{summaryDisplayData.totalDistance}</Text>
-      <RunnerDivider />
-      <Text style={styles.title}>Average duration</Text>
-      <Text style={styles.value}>{summaryDisplayData.avgDuration}</Text>
-    </View>
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    margin: 16,
-    borderRadius: 12,
-    padding: 16,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '200',
-  },
-  value: {
-    fontSize: 20,
-  },
-});
