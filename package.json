@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
+    "pods": "cd ./ios && pod install",
     "start": "react-native start",
     "test": "jest"
   },
