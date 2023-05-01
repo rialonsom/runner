@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import format from 'format-duration';
-import { RunDataContext } from './RunDataProvider';
+import { RunDataContext } from '../data/RunDataProvider';
 
 export type SummaryDisplayData = {
   totalDistance: string;

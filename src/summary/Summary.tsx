@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RunnerDivider } from '../ui-components';
-import { useSummaryDisplayData } from '../data/useSummaryDisplayData';
+import { useSummaryDisplayData } from './useSummaryDisplayData';
 
 export function Summary() {
   const summaryDisplayData = useSummaryDisplayData();

@@ -6,7 +6,7 @@ import {
   RunsStackScreenProps,
 } from '../main-tab-navigator';
 import { RunnerDivider } from '../ui-components';
-import { useRun } from '../data/useRunDetailData';
+import { useRun } from '../data/useRun';
 import { RunDataReducerAction } from '../data/RunDataProvider';
 import { RunDataContext } from '../data/RunDataProvider';
 import { getRun } from '../data/storage/getRun';
