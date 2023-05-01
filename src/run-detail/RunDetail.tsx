@@ -6,18 +6,21 @@ import {
   RunsStackScreenProps,
 } from '../main-tab-navigator';
 import { RunnerDivider } from '../ui-components';
-import { useRunDetailData } from '../data/useRunDetailData';
+import { useRun } from '../data/useRunDetailData';
 import { RunDataReducerAction } from '../data/RunDataProvider';
 import { RunDataContext } from '../data/RunDataProvider';
 import { getRun } from '../data/storage/getRun';
 import { Run } from '../data/storage/getRuns';
+import { getRunDisplayData } from '../utils';
 
 export function RunDetail() {
   const navigation = useNavigation<RunsStackScreenProps['navigation']>();
   const route = useRoute<RouteProp<RunsStackParamList, 'RunDetail'>>();
   const { runId } = route.params;
-  const run = useRunDetailData(runId);
+  const run = useRun(runId);
   const { dispatch: runDataDispatch } = useContext(RunDataContext);
+
+  const runDisplayData = run && getRunDisplayData(run);
 
   const onPressDelete = useCallback(() => {
     if (run === undefined) {
@@ -44,28 +47,20 @@ export function RunDetail() {
     ]);
   }, [navigation, run, runDataDispatch]);
 
-  if (run === undefined) {
-    return (
-      <View style={styles.container}>
-        <Text>Error</Text>
-      </View>
-    );
-  }
-
   return (
     <View>
       <View style={styles.container}>
         <Text style={styles.title}>Distance</Text>
-        <Text style={styles.value}>{run.distance}</Text>
+        <Text style={styles.value}>{runDisplayData?.distance}</Text>
         <RunnerDivider />
         <Text style={styles.title}>Duration</Text>
-        <Text style={styles.value}>{run.duration}</Text>
+        <Text style={styles.value}>{runDisplayData?.duration}</Text>
         <RunnerDivider />
         <Text style={styles.title}>Pace</Text>
-        <Text style={styles.value}>{run.pace}</Text>
+        <Text style={styles.value}>{runDisplayData?.pace}</Text>
         <RunnerDivider />
         <Text style={styles.title}>Date</Text>
-        <Text style={styles.value}>{run.date}</Text>
+        <Text style={styles.value}>{runDisplayData?.date}</Text>
       </View>
       <Button title="Delete" color="red" onPress={onPressDelete} />
     </View>

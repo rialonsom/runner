@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RunDisplayData } from '../data/useRunListDisplayData';
 import { RunsStackScreenProps } from '../main-tab-navigator';
+import { getRunDisplayData } from '../utils';
+import { Run } from '../data/storage/getRuns';
 
 export function RunListRow(props: {
-  run: RunDisplayData;
+  run: Run;
   index: number;
   navigation: RunsStackScreenProps['navigation'];
 }) {
+  const runDisplayData = getRunDisplayData(props.run);
+
   const containerStyle = [
     styles.container,
     props.index === 0 ? { marginTop: 8 } : undefined,
@@ -19,8 +22,8 @@ export function RunListRow(props: {
         props.navigation.navigate('RunDetail', { runId: props.run._id })
       }>
       <View style={containerStyle}>
-        <Text style={styles.distance}>{props.run.distance}</Text>
-        <Text style={styles.date}>{props.run.date}</Text>
+        <Text style={styles.distance}>{runDisplayData.distance}</Text>
+        <Text style={styles.date}>{runDisplayData.date}</Text>
       </View>
     </TouchableOpacity>
   );
