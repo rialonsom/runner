@@ -3,12 +3,11 @@ import { SceneMap, TabView } from 'react-native-tab-view';
 import { SummaryAllTab } from './SummaryAllTab';
 import { useWindowDimensions } from 'react-native';
 import { SummaryYearTab } from './SummaryYearTab';
-import { SummaryMonthTab } from './SummaryMonthTab';
 
 const renderScene = SceneMap({
   all: SummaryAllTab,
   year: SummaryYearTab,
-  month: SummaryMonthTab,
+  // month: SummaryMonthTab, // coming later
 });
 
 export function Summary() {
@@ -16,7 +15,7 @@ export function Summary() {
 
   const [index, setIndex] = useState(0);
   const routes = [
-    { key: 'month', title: 'Month' },
+    // { key: 'month', title: 'Month' },
     { key: 'year', title: 'Year' },
     { key: 'all', title: 'All' },
   ];
