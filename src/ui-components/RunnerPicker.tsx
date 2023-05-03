@@ -62,6 +62,6 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
 
 const styles = StyleSheet.create({
   pickerItem: {
-    fontSize: 16,
+    fontSize: 18,
   },
 });
