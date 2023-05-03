@@ -7,9 +7,13 @@ export type SummaryDisplayData = {
   avgDuration: string;
 };
 
-export function useSummaryDisplayData() {
+export function useSummaryDisplayData(year: number | undefined = undefined) {
   const { state } = useContext(RunDataContext);
-  const runs = state;
+  let runs = state;
+
+  if (year !== undefined) {
+    runs = runs.filter(item => item.date.getFullYear() === year);
+  }
 
   const totalDistance =
     (runs.reduce((acc, cur) => acc + cur.distance_meters, 0) / 1000).toFixed(
