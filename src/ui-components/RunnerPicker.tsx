@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import React from 'react';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 export type RunnerPickerOption<T> = {
   key: string;
@@ -23,15 +24,27 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
     props.initialSelectedValue,
   );
 
-  if (!props.isOpen) {
-    return <></>;
-  }
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  useEffect(() => {
+    if (props.isOpen) {
+      bottomSheetRef.current?.expand();
+    } else {
+      bottomSheetRef.current?.close();
+    }
+  }, [props.isOpen]);
 
   return (
-    <View style={styles.container}>
+    <BottomSheet
+      ref={bottomSheetRef}
+      index={-1}
+      snapPoints={['50%']}
+      enableHandlePanningGesture={false}
+      handleComponent={null}>
       <Picker
         selectedValue={selectedOption}
-        onValueChange={itemValue => setSelectedOption(itemValue)}>
+        onValueChange={itemValue => setSelectedOption(itemValue)}
+        itemStyle={styles.pickerItem}>
         {props.options.map(option => (
           <Picker.Item
             key={option.key}
@@ -42,14 +55,13 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
         ))}
       </Picker>
       <Button title="Select" onPress={() => props.onSelect(selectedOption)} />
-      <Button title="Cancel" onPress={props.onCancel} />
-    </View>
+      <Button title="Cancel" onPress={() => props.onCancel()} />
+    </BottomSheet>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 'auto',
-    backgroundColor: 'white',
+  pickerItem: {
+    fontSize: 16,
   },
 });

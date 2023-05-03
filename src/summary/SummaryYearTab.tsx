@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useRuns } from '../data/useRuns';
 import { RunnerPicker, RunnerPickerOption } from '../ui-components';
+import { useNavigation } from '@react-navigation/native';
 
 export function SummaryYearTab() {
+  const navigation = useNavigation();
   const runs = useRuns();
 
   const maxYear = runs[0].date.getFullYear();
@@ -16,6 +18,14 @@ export function SummaryYearTab() {
   for (let i = maxYear; i >= minYear; i--) {
     options.push({ key: i.toString(), label: i.toString(), value: i });
   }
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      setYearPickerOpen(false);
+    });
+
+    return unsubscribe;
+  });
 
   return (
     <View style={styles.container}>
