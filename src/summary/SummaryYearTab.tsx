@@ -40,11 +40,17 @@ export function SummaryYearTab() {
         <Text style={styles.pickerValue}>{selectedYear}</Text>
       </Pressable>
       <View style={styles.summaryContainer}>
+        <Text style={styles.title}>Total runs</Text>
+        <Text style={styles.value}>{summaryDisplayData.runQuantity}</Text>
+        <RunnerDivider />
         <Text style={styles.title}>Total distance</Text>
         <Text style={styles.value}>{summaryDisplayData.totalDistance}</Text>
         <RunnerDivider />
         <Text style={styles.title}>Average duration</Text>
         <Text style={styles.value}>{summaryDisplayData.avgDuration}</Text>
+        <RunnerDivider />
+        <Text style={styles.title}>Average pace</Text>
+        <Text style={styles.value}>{summaryDisplayData.avgPace}</Text>
       </View>
 
       <RunnerPicker

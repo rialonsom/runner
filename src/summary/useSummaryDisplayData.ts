@@ -5,6 +5,8 @@ import { RunDataContext } from '../data/RunDataProvider';
 export type SummaryDisplayData = {
   totalDistance: string;
   avgDuration: string;
+  runQuantity: string;
+  avgPace: string;
 };
 
 export function useSummaryDisplayData(year: number | undefined = undefined) {
@@ -25,8 +27,20 @@ export function useSummaryDisplayData(year: number | undefined = undefined) {
       1000,
   );
 
+  const runQuantity = runs.length.toString();
+
+  const avgPaceNumber = runs.reduce((acc, cur) => {
+    const pace = cur.duration_seconds / 60 / (cur.distance_meters / 1000);
+
+    return acc + pace / runs.length;
+  }, 0);
+
+  const avgPace = format(avgPaceNumber * 60 * 1000);
+
   return {
     totalDistance,
     avgDuration,
+    runQuantity,
+    avgPace,
   };
 }
