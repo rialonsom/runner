@@ -9,6 +9,7 @@ import {
   RunsStackParamList,
   SummaryStackParamList,
 } from './types';
+import { MainTabNavigatorHeaderLeft } from './MainTabNavigatorHeaderLeft';
 
 const RunsStack = createNativeStackNavigator<RunsStackParamList>();
 function RunsStackNavigator() {
@@ -17,7 +18,11 @@ function RunsStackNavigator() {
       <RunsStack.Screen
         name="RunList"
         component={RunList}
-        options={{ headerRight: RunListHeaderRight, title: 'My runs' }}
+        options={{
+          headerLeft: MainTabNavigatorHeaderLeft,
+          headerRight: RunListHeaderRight,
+          title: 'My runs',
+        }}
       />
       <RunsStack.Screen
         name="RunDetail"
@@ -35,7 +40,11 @@ const SummaryStack = createNativeStackNavigator<SummaryStackParamList>();
 function SummaryStackNavigator() {
   return (
     <SummaryStack.Navigator initialRouteName="Summary">
-      <SummaryStack.Screen name="Summary" component={Summary} />
+      <SummaryStack.Screen
+        name="Summary"
+        component={Summary}
+        options={{ headerLeft: MainTabNavigatorHeaderLeft }}
+      />
     </SummaryStack.Navigator>
   );
 }

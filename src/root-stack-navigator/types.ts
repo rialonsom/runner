@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 export type RootStackParamList = {
   MainTabNavigator: NavigatorScreenParams<MainTabParamList>;
   RunCreation?: { runId: string };
+  Settings: undefined;
 };
 
 export type RootStackScreenProps = NativeStackScreenProps<RootStackParamList>;
