@@ -1,8 +1,9 @@
+import { UserPreference } from './getUserPreference';
 import { storage } from './storage';
 
 export function setUserPreference(
   preference: string,
-  value: string | number | boolean,
+  value: UserPreference,
 ): void {
   storage.set(`user.preference.${preference}`, value);
 }
