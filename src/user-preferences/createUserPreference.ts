@@ -22,12 +22,9 @@ export function createUserPreference<T extends UserPreference>(
     setUserPreference(name, defaultValue);
   }
 
-  const initialPreferenceValue =
-    getUserPreference<T>(name, typeof defaultValue) ?? defaultValue;
-
   const useUserPreference: UserPreferenceHook<T> = () => {
     const [preferenceValueState, setPreferenceValueState] = useState<T>(
-      initialPreferenceValue,
+      getUserPreference<T>(name, typeof defaultValue) ?? defaultValue,
     );
 
     const setUserPreferenceValue = (value: T) => {
