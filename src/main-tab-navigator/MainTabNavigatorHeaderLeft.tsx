@@ -6,6 +6,9 @@ import { MainTabScreenProps } from '../main-tab-navigator';
 export function MainTabNavigatorHeaderLeft() {
   const navigation = useNavigation<MainTabScreenProps['navigation']>();
   return (
-    <Button title="Settings" onPress={() => navigation.navigate('Settings')} />
+    <Button
+      title="Settings"
+      onPress={() => navigation.navigate('SettingsStack')}
+    />
   );
 }
