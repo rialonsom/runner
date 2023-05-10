@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   UserPreference,
   getUserPreference,
 } from '../data/storage/getUserPreference';
 import { setUserPreference } from '../data/storage/setUserPreference';
 import { checkUserPreference } from '../data/storage/checkUserPreference';
+import { Subject } from 'rxjs';
 
 type UserPreferenceHook<T> = () => [T, (value: T) => void];
 
@@ -22,6 +23,8 @@ export function createUserPreference<T extends UserPreference>(
     setUserPreference(name, defaultValue);
   }
 
+  const preferenceSubject = new Subject<T>();
+
   const useUserPreference: UserPreferenceHook<T> = () => {
     const [preferenceValueState, setPreferenceValueState] = useState<T>(
       getUserPreference<T>(name, typeof defaultValue) ?? defaultValue,
@@ -29,8 +32,17 @@ export function createUserPreference<T extends UserPreference>(
 
     const setUserPreferenceValue = (value: T) => {
       setUserPreference(name, value);
-      setPreferenceValueState(value);
+      preferenceSubject.next(value);
     };
+
+    useEffect(() => {
+      const subscription = preferenceSubject.subscribe({
+        next: value => {
+          setPreferenceValueState(value);
+        },
+      });
+      return () => subscription.unsubscribe();
+    }, []);
 
     return [preferenceValueState, setUserPreferenceValue];
   };
