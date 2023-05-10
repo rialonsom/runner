@@ -16,8 +16,16 @@ export function SettingsStackNavigator() {
         component={Settings}
         options={{ headerRight: HeaderRight }}
       />
-      <SettingsStack.Screen name="ThemeSetting" component={ThemeSetting} />
-      <SettingsStack.Screen name="UnitSetting" component={UnitSetting} />
+      <SettingsStack.Screen
+        name="ThemeSetting"
+        component={ThemeSetting}
+        options={{ title: 'Theme' }}
+      />
+      <SettingsStack.Screen
+        name="UnitSetting"
+        component={UnitSetting}
+        options={{ title: 'Unit system' }}
+      />
     </SettingsStack.Navigator>
   );
 }
