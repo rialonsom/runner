@@ -6,19 +6,17 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {
-  Alert,
-  Button,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-} from 'react-native';
+import { Alert, Button, Pressable, StyleSheet, TextInput } from 'react-native';
 import {
   RootStackParamList,
   RootStackScreenProps,
 } from '../root-stack-navigator';
-import { RunnerView, RunnerInputGroup, RunnerDivider } from '../ui-components';
+import {
+  RunnerView,
+  RunnerInputGroup,
+  RunnerDivider,
+  RunnerText,
+} from '../ui-components';
 import DatePicker from 'react-native-date-picker';
 import { RunDataContext, RunDataReducerAction } from '../data/RunDataProvider';
 import { getRun } from '../data/storage/getRun';
@@ -118,7 +116,7 @@ export function RunCreation() {
         />
         <RunnerDivider />
         <Pressable onPress={() => setDatePickerOpen(true)}>
-          <Text style={styles.dateButton}>
+          <RunnerText style={styles.dateButton}>
             {date.toLocaleString(undefined, {
               weekday: 'long',
               year: 'numeric',
@@ -127,7 +125,7 @@ export function RunCreation() {
               hour: 'numeric',
               minute: 'numeric',
             })}
-          </Text>
+          </RunnerText>
         </Pressable>
         <DatePicker
           modal
