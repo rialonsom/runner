@@ -1,18 +1,16 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { RootStackNavigator } from './src/root-stack-navigator';
-import { RunDataProvider } from './src/data/RunDataProvider';
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
+import { AppNavigationContainer } from './AppNavigationContainer';
+import { ThemeProvider } from './theme';
 
 function App(): JSX.Element {
   return (
     <GestureHandlerRootView style={styles.container}>
-      <NavigationContainer>
-        <RunDataProvider>
-          <RootStackNavigator />
-        </RunDataProvider>
-      </NavigationContainer>
+      <ThemeProvider>
+        <AppNavigationContainer />
+      </ThemeProvider>
     </GestureHandlerRootView>
   );
 }
