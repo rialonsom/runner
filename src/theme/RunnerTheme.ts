@@ -7,7 +7,9 @@ import {
 export type RunnerThemeName = 'light' | 'dark';
 
 type ComplementaryTheme = {
-  edges: string;
+  colors: {
+    secondaryText: string;
+  };
 };
 
 export type RunnerTheme = NavigationTheme & ComplementaryTheme;
@@ -22,7 +24,10 @@ export const runnerLightNavigationTheme: NavigationTheme = {
 
 export const runnerLightTheme: RunnerTheme = {
   ...runnerLightNavigationTheme,
-  edges: 'black',
+  colors: {
+    ...runnerLightNavigationTheme.colors,
+    secondaryText: 'gray',
+  },
 };
 
 export const runnerDarkNavigationTheme: NavigationTheme = {
@@ -35,5 +40,8 @@ export const runnerDarkNavigationTheme: NavigationTheme = {
 
 export const runnerDarkTheme: RunnerTheme = {
   ...runnerDarkNavigationTheme,
-  edges: 'black',
+  colors: {
+    ...runnerDarkNavigationTheme.colors,
+    secondaryText: 'gray',
+  },
 };
