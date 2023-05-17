@@ -1,19 +1,22 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React, { useCallback, useContext } from 'react';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, View } from 'react-native';
 import {
   RunsStackParamList,
   RunsStackScreenProps,
 } from '../main-tab-navigator';
-import { RunnerDivider } from '../ui-components';
+import { RunnerDivider, RunnerText } from '../ui-components';
 import { useRun } from '../data/useRun';
 import { RunDataReducerAction } from '../data/RunDataProvider';
 import { RunDataContext } from '../data/RunDataProvider';
 import { getRun } from '../data/storage/getRun';
 import { Run } from '../data/storage/getRuns';
 import { getRunDisplayData } from '../utils';
+import { ThemeContext } from '../theme';
+import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 
 export function RunDetail() {
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RunsStackScreenProps['navigation']>();
   const route = useRoute<RouteProp<RunsStackParamList, 'RunDetail'>>();
   const { runId } = route.params;
@@ -49,18 +52,18 @@ export function RunDetail() {
 
   return (
     <View>
-      <View style={styles.container}>
-        <Text style={styles.title}>Distance</Text>
-        <Text style={styles.value}>{runDisplayData?.distance}</Text>
+      <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
+        <RunnerSecondaryText style={styles.title}>Distance</RunnerSecondaryText>
+        <RunnerText style={styles.value}>{runDisplayData?.distance}</RunnerText>
         <RunnerDivider />
-        <Text style={styles.title}>Duration</Text>
-        <Text style={styles.value}>{runDisplayData?.duration}</Text>
+        <RunnerSecondaryText style={styles.title}>Duration</RunnerSecondaryText>
+        <RunnerText style={styles.value}>{runDisplayData?.duration}</RunnerText>
         <RunnerDivider />
-        <Text style={styles.title}>Pace</Text>
-        <Text style={styles.value}>{runDisplayData?.pace}</Text>
+        <RunnerSecondaryText style={styles.title}>Pace</RunnerSecondaryText>
+        <RunnerText style={styles.value}>{runDisplayData?.pace}</RunnerText>
         <RunnerDivider />
-        <Text style={styles.title}>Date</Text>
-        <Text style={styles.value}>{runDisplayData?.date}</Text>
+        <RunnerSecondaryText style={styles.title}>Date</RunnerSecondaryText>
+        <RunnerText style={styles.value}>{runDisplayData?.date}</RunnerText>
       </View>
       <Button title="Delete" color="red" onPress={onPressDelete} />
     </View>
@@ -69,14 +72,13 @@ export function RunDetail() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     margin: 16,
     borderRadius: 12,
     padding: 16,
   },
   title: {
     fontSize: 16,
-    fontWeight: '200',
+    fontWeight: '300',
   },
   value: {
     fontSize: 20,
