@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   ListRenderItemInfo,
   SectionList,
   SectionListData,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
@@ -13,8 +12,11 @@ import { useNavigation } from '@react-navigation/native';
 import { RunsStackScreenProps } from '../main-tab-navigator';
 import { useRuns } from '../data/useRuns';
 import { Run } from '../data/storage/getRuns';
+import { ThemeContext } from '../theme';
+import { RunnerText } from '../ui-components';
 
 export function RunList() {
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RunsStackScreenProps['navigation']>();
   const runs = useRuns();
 
@@ -30,8 +32,14 @@ export function RunList() {
     section: SectionListData<Run, RunListSection>;
   }) => {
     return (
-      <View style={styles.sectionHeader}>
-        <Text style={styles.sectionHeaderTitle}>{info.section.title}</Text>
+      <View
+        style={[
+          { backgroundColor: theme.colors.background },
+          styles.sectionHeader,
+        ]}>
+        <RunnerText style={styles.sectionHeaderTitle}>
+          {info.section.title}
+        </RunnerText>
       </View>
     );
   };
@@ -93,10 +101,11 @@ function getRunSections(runs: Run[]): RunListSection[] {
 
 const styles = StyleSheet.create({
   sectionHeader: {
-    padding: 8,
-    backgroundColor: 'white',
+    paddingVertical: 8,
+    paddingLeft: 24,
   },
   sectionHeaderTitle: {
-    fontSize: 18,
+    fontSize: 20,
+    fontWeight: '600',
   },
 });

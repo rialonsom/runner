@@ -15,17 +15,12 @@ export function RunListRow(props: {
   const { theme } = useContext(ThemeContext);
   const runDisplayData = getRunDisplayData(props.run);
 
-  const containerStyle = [
-    styles.container,
-    props.index === 0 ? { marginTop: 8 } : undefined,
-  ];
-
   return (
     <TouchableOpacity
       onPress={() =>
         props.navigation.navigate('RunDetail', { runId: props.run._id })
       }>
-      <View style={[{ backgroundColor: theme.colors.card }, containerStyle]}>
+      <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
         <RunnerText style={styles.distance}>
           {runDisplayData.distance}
         </RunnerText>
