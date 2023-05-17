@@ -1,14 +1,18 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RunsStackScreenProps } from '../main-tab-navigator';
 import { getRunDisplayData } from '../utils';
 import { Run } from '../data/storage/getRuns';
+import { RunnerText } from '../ui-components';
+import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
+import { ThemeContext } from '../theme';
 
 export function RunListRow(props: {
   run: Run;
   index: number;
   navigation: RunsStackScreenProps['navigation'];
 }) {
+  const { theme } = useContext(ThemeContext);
   const runDisplayData = getRunDisplayData(props.run);
 
   const containerStyle = [
@@ -21,9 +25,11 @@ export function RunListRow(props: {
       onPress={() =>
         props.navigation.navigate('RunDetail', { runId: props.run._id })
       }>
-      <View style={containerStyle}>
-        <Text style={styles.distance}>{runDisplayData.distance}</Text>
-        <Text style={styles.date}>{runDisplayData.date}</Text>
+      <View style={[{ backgroundColor: theme.colors.card }, containerStyle]}>
+        <RunnerText style={styles.distance}>
+          {runDisplayData.distance}
+        </RunnerText>
+        <RunnerSecondaryText>{runDisplayData.date}</RunnerSecondaryText>
       </View>
     </TouchableOpacity>
   );
@@ -32,15 +38,11 @@ export function RunListRow(props: {
 const styles = StyleSheet.create({
   container: {
     padding: 8,
-    backgroundColor: 'white',
     marginHorizontal: 20,
     marginBottom: 8,
     borderRadius: 8,
   },
   distance: {
     fontSize: 24,
-  },
-  date: {
-    color: 'gray',
   },
 });
