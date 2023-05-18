@@ -1,31 +1,45 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useSummaryDisplayData } from './useSummaryDisplayData';
-import React from 'react';
-import { RunnerDivider } from '../ui-components';
+import React, { useContext } from 'react';
+import { RunnerDivider, RunnerText } from '../ui-components';
+import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
+import { ThemeContext } from '../theme';
 
 export function SummaryAllTab() {
+  const { theme } = useContext(ThemeContext);
   const summaryDisplayData = useSummaryDisplayData();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Total runs</Text>
-      <Text style={styles.value}>{summaryDisplayData.runQuantity}</Text>
+    <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
+      <RunnerSecondaryText style={styles.title}>Total runs</RunnerSecondaryText>
+      <RunnerText style={styles.value}>
+        {summaryDisplayData.runQuantity}
+      </RunnerText>
       <RunnerDivider />
-      <Text style={styles.title}>Total distance</Text>
-      <Text style={styles.value}>{summaryDisplayData.totalDistance}</Text>
+      <RunnerSecondaryText style={styles.title}>
+        Total distance
+      </RunnerSecondaryText>
+      <RunnerText style={styles.value}>
+        {summaryDisplayData.totalDistance}
+      </RunnerText>
       <RunnerDivider />
-      <Text style={styles.title}>Average duration</Text>
-      <Text style={styles.value}>{summaryDisplayData.avgDuration}</Text>
+      <RunnerSecondaryText style={styles.title}>
+        Average duration
+      </RunnerSecondaryText>
+      <RunnerText style={styles.value}>
+        {summaryDisplayData.avgDuration}
+      </RunnerText>
       <RunnerDivider />
-      <Text style={styles.title}>Average pace</Text>
-      <Text style={styles.value}>{summaryDisplayData.avgPace}</Text>
+      <RunnerSecondaryText style={styles.title}>
+        Average pace
+      </RunnerSecondaryText>
+      <RunnerText style={styles.value}>{summaryDisplayData.avgPace}</RunnerText>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     margin: 16,
     borderRadius: 12,
     padding: 16,

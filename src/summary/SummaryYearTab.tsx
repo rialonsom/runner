@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useRuns } from '../data/useRuns';
 import {
   RunnerDivider,
   RunnerPicker,
   RunnerPickerOption,
+  RunnerText,
 } from '../ui-components';
 import { useNavigation } from '@react-navigation/native';
 import { useSummaryDisplayData } from './useSummaryDisplayData';
+import { ThemeContext } from '../theme';
+import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 
 export function SummaryYearTab() {
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation();
   const runs = useRuns();
 
@@ -37,20 +41,40 @@ export function SummaryYearTab() {
   return (
     <View style={styles.container}>
       <Pressable onPress={() => setYearPickerOpen(!yearPickerOpen)}>
-        <Text style={styles.pickerValue}>{selectedYear}</Text>
+        <RunnerText style={styles.pickerValue}>{selectedYear}</RunnerText>
       </Pressable>
-      <View style={styles.summaryContainer}>
-        <Text style={styles.title}>Total runs</Text>
-        <Text style={styles.value}>{summaryDisplayData.runQuantity}</Text>
+      <View
+        style={[
+          { backgroundColor: theme.colors.card },
+          styles.summaryContainer,
+        ]}>
+        <RunnerSecondaryText style={styles.title}>
+          Total runs
+        </RunnerSecondaryText>
+        <RunnerText style={styles.value}>
+          {summaryDisplayData.runQuantity}
+        </RunnerText>
         <RunnerDivider />
-        <Text style={styles.title}>Total distance</Text>
-        <Text style={styles.value}>{summaryDisplayData.totalDistance}</Text>
+        <RunnerSecondaryText style={styles.title}>
+          Total distance
+        </RunnerSecondaryText>
+        <RunnerText style={styles.value}>
+          {summaryDisplayData.totalDistance}
+        </RunnerText>
         <RunnerDivider />
-        <Text style={styles.title}>Average duration</Text>
-        <Text style={styles.value}>{summaryDisplayData.avgDuration}</Text>
+        <RunnerSecondaryText style={styles.title}>
+          Average duration
+        </RunnerSecondaryText>
+        <RunnerText style={styles.value}>
+          {summaryDisplayData.avgDuration}
+        </RunnerText>
         <RunnerDivider />
-        <Text style={styles.title}>Average pace</Text>
-        <Text style={styles.value}>{summaryDisplayData.avgPace}</Text>
+        <RunnerSecondaryText style={styles.title}>
+          Average pace
+        </RunnerSecondaryText>
+        <RunnerText style={styles.value}>
+          {summaryDisplayData.avgPace}
+        </RunnerText>
       </View>
 
       <RunnerPicker
@@ -77,7 +101,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   summaryContainer: {
-    backgroundColor: 'white',
     margin: 16,
     borderRadius: 12,
     padding: 16,
