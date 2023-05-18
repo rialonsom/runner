@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import React from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
+import { ThemeContext } from '../theme';
 
 export type RunnerPickerOption<T> = {
   key: string;
@@ -20,6 +21,7 @@ export type RunnerPickerProps<T> = {
 };
 
 export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
+  const { theme } = useContext(ThemeContext);
   const [selectedOption, setSelectedOption] = useState(
     props.initialSelectedValue,
   );
@@ -40,7 +42,8 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
       index={-1}
       snapPoints={['50%']}
       enableHandlePanningGesture={false}
-      handleComponent={null}>
+      handleComponent={null}
+      backgroundStyle={{ backgroundColor: theme.colors.card }}>
       <Picker
         selectedValue={selectedOption}
         onValueChange={itemValue => setSelectedOption(itemValue)}
@@ -51,6 +54,7 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
             label={option.label}
             value={option.value}
             enabled={option.enabled ?? true}
+            color={theme.colors.text}
           />
         ))}
       </Picker>
