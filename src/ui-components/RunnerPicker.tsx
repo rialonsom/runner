@@ -58,8 +58,16 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
           />
         ))}
       </Picker>
-      <Button title="Select" onPress={() => props.onSelect(selectedOption)} />
-      <Button title="Cancel" onPress={() => props.onCancel()} />
+      <Button
+        title="Select"
+        onPress={() => props.onSelect(selectedOption)}
+        color={theme.colors.primary}
+      />
+      <Button
+        title="Cancel"
+        onPress={() => props.onCancel()}
+        color={theme.colors.primary}
+      />
     </BottomSheet>
   );
 }

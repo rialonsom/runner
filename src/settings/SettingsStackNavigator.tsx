@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Settings } from './Settings';
 import { Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ThemeSetting } from './screens/ThemeSetting';
 import { UnitSetting } from './screens/UnitSetting';
+import { ThemeContext } from '../theme';
 
 const SettingsStack = createNativeStackNavigator();
 
@@ -31,7 +32,14 @@ export function SettingsStackNavigator() {
 }
 
 function HeaderRight() {
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation();
 
-  return <Button title="Done" onPress={() => navigation.goBack()} />;
+  return (
+    <Button
+      title="Done"
+      onPress={() => navigation.goBack()}
+      color={theme.colors.primary}
+    />
+  );
 }

@@ -20,8 +20,10 @@ import {
 import DatePicker from 'react-native-date-picker';
 import { RunDataContext, RunDataReducerAction } from '../data/RunDataProvider';
 import { getRun } from '../data/storage/getRun';
+import { ThemeContext } from '../theme';
 
 export function RunCreation() {
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RootStackScreenProps['navigation']>();
   const route = useRoute<RouteProp<RootStackParamList, 'RunCreation'>>();
 
@@ -87,14 +89,22 @@ export function RunCreation() {
 
   useEffect(() => {
     const headerLeft = () => (
-      <Button title="Cancel" onPress={() => navigation.goBack()} />
+      <Button
+        title="Cancel"
+        onPress={() => navigation.goBack()}
+        color={theme.colors.primary}
+      />
     );
     const headerRight = () => (
-      <Button title={isEdit ? 'Done' : 'Add'} onPress={onPressDone} />
+      <Button
+        title={isEdit ? 'Done' : 'Add'}
+        onPress={onPressDone}
+        color={theme.colors.primary}
+      />
     );
     const title = isEdit ? 'Edit run' : 'New run';
     navigation.setOptions({ title, headerLeft, headerRight });
-  }, [isEdit, navigation, onPressDone]);
+  }, [isEdit, navigation, onPressDone, theme.colors.primary]);
 
   return (
     <RunnerView>
