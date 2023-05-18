@@ -1,41 +1,43 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RunnerDivider } from '../../ui-components';
+import React, { useContext } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { RunnerDivider, RunnerText } from '../../ui-components';
 import {
   ThemePreference,
   useUserThemePreference,
 } from '../../user-preferences';
+import { ThemeContext } from '../../theme';
 
 export function ThemeSetting() {
+  const { theme } = useContext(ThemeContext);
   const [themePreference, setThemePreference] = useUserThemePreference();
 
   return (
-    <View style={styles.container}>
+    <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
       <TouchableOpacity
         onPress={() => setThemePreference(ThemePreference.Light)}>
         <View style={styles.settingRow}>
-          <Text>
+          <RunnerText>
             Light {themePreference === ThemePreference.Light && '(selected)'}
-          </Text>
+          </RunnerText>
         </View>
       </TouchableOpacity>
       <RunnerDivider />
       <TouchableOpacity
         onPress={() => setThemePreference(ThemePreference.Dark)}>
         <View style={styles.settingRow}>
-          <Text>
+          <RunnerText>
             Dark {themePreference === ThemePreference.Dark && '(selected)'}
-          </Text>
+          </RunnerText>
         </View>
       </TouchableOpacity>
       <RunnerDivider />
       <TouchableOpacity
         onPress={() => setThemePreference(ThemePreference.System)}>
         <View style={styles.settingRow}>
-          <Text>
+          <RunnerText>
             Same as system{' '}
             {themePreference === ThemePreference.System && '(selected)'}
-          </Text>
+          </RunnerText>
         </View>
       </TouchableOpacity>
     </View>
@@ -44,7 +46,6 @@ export function ThemeSetting() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     margin: 16,
     borderRadius: 12,
     paddingVertical: 10,

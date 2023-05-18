@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   useUserDummyPreference,
   useUserThemePreference,
   useUserUnitPreference,
 } from '../user-preferences';
-import { StyleSheet, Switch, Text, View } from 'react-native';
-import { RunnerDivider } from '../ui-components';
+import { StyleSheet, Switch, View } from 'react-native';
+import { RunnerDivider, RunnerText } from '../ui-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { SettingsStackScreenProps } from './types';
+import { ThemeContext } from '../theme';
+import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 
 export function Settings() {
+  const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<SettingsStackScreenProps['navigation']>();
 
   const [dummyPreference, setDummyPreference] = useUserDummyPreference();
@@ -20,23 +23,23 @@ export function Settings() {
   const toggleSwitch = () => setDummyPreference(!dummyPreference);
 
   return (
-    <View style={styles.container}>
+    <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
       <View style={styles.settingRow}>
-        <Text>Dummy setting</Text>
+        <RunnerText>Dummy setting</RunnerText>
         <Switch value={dummyPreference} onValueChange={toggleSwitch} />
       </View>
       <RunnerDivider />
       <TouchableOpacity onPress={() => navigation.navigate('ThemeSetting')}>
         <View style={styles.settingRow}>
-          <Text>Theme</Text>
-          <Text>{themePreference} &gt;</Text>
+          <RunnerText>Theme</RunnerText>
+          <RunnerSecondaryText>{themePreference} &gt;</RunnerSecondaryText>
         </View>
       </TouchableOpacity>
       <RunnerDivider />
       <TouchableOpacity onPress={() => navigation.navigate('UnitSetting')}>
         <View style={styles.settingRow}>
-          <Text>Unit system</Text>
-          <Text>{unitPreference} &gt;</Text>
+          <RunnerText>Unit system</RunnerText>
+          <RunnerSecondaryText>{unitPreference} &gt;</RunnerSecondaryText>
         </View>
       </TouchableOpacity>
     </View>
@@ -45,7 +48,6 @@ export function Settings() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     margin: 16,
     borderRadius: 12,
     paddingVertical: 10,

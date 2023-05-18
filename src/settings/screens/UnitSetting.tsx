@@ -1,29 +1,31 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RunnerDivider } from '../../ui-components';
+import React, { useContext } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { RunnerDivider, RunnerText } from '../../ui-components';
 import { UnitPreference, useUserUnitPreference } from '../../user-preferences';
+import { ThemeContext } from '../../theme';
 
 export function UnitSetting() {
+  const { theme } = useContext(ThemeContext);
   const [unitPreference, setUnitPreference] = useUserUnitPreference();
 
   return (
-    <View style={styles.container}>
+    <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
       <TouchableOpacity
         onPress={() => setUnitPreference(UnitPreference.Metric)}>
         <View style={styles.settingRow}>
-          <Text>
+          <RunnerText>
             Metric {unitPreference === UnitPreference.Metric && '(selected)'}
-          </Text>
+          </RunnerText>
         </View>
       </TouchableOpacity>
       <RunnerDivider />
       <TouchableOpacity
         onPress={() => setUnitPreference(UnitPreference.Imperial)}>
         <View style={styles.settingRow}>
-          <Text>
+          <RunnerText>
             Imperial{' '}
             {unitPreference === UnitPreference.Imperial && '(selected)'}
-          </Text>
+          </RunnerText>
         </View>
       </TouchableOpacity>
     </View>
@@ -32,7 +34,6 @@ export function UnitSetting() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     margin: 16,
     borderRadius: 12,
     paddingVertical: 10,
