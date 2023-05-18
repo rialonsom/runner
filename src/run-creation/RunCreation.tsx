@@ -110,7 +110,7 @@ export function RunCreation() {
     <RunnerView>
       <RunnerInputGroup>
         <TextInput
-          style={styles.inputField}
+          style={[{ color: theme.colors.text }, styles.inputField]}
           placeholder="Distance (m)"
           inputMode="numeric"
           value={distance}
@@ -118,7 +118,7 @@ export function RunCreation() {
         />
         <RunnerDivider />
         <TextInput
-          style={styles.inputField}
+          style={[{ color: theme.colors.text }, styles.inputField]}
           placeholder="Duration (minutes)"
           inputMode="numeric"
           value={duration}
