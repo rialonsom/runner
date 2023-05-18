@@ -8,8 +8,11 @@ import {
   MainTabParamList,
   RunsStackParamList,
   SummaryStackParamList,
+  TabBarIconProps,
 } from './types';
 import { MainTabNavigatorHeaderLeft } from './MainTabNavigatorHeaderLeft';
+import RunsIcon from '../../assets/run-icon.svg';
+import SummaryIcon from '../../assets/summary-icon.svg';
 
 const RunsStack = createNativeStackNavigator<RunsStackParamList>();
 function RunsStackNavigator() {
@@ -51,17 +54,24 @@ function SummaryStackNavigator() {
 
 const MainTab = createBottomTabNavigator<MainTabParamList>();
 export function MainTabNavigator() {
+  const runsTabIcon = ({ color, size }: TabBarIconProps) => (
+    <RunsIcon width={size} height={size} fill={color} stroke={color} />
+  );
+  const summaryTabIcon = ({ color, size }: TabBarIconProps) => (
+    <SummaryIcon width={size} height={size} fill={color} stroke={color} />
+  );
+
   return (
     <MainTab.Navigator screenOptions={{ headerShown: false }}>
       <MainTab.Screen
         name="RunsTab"
         component={RunsStackNavigator}
-        options={{ title: 'My runs' }}
+        options={{ title: 'My runs', tabBarIcon: runsTabIcon }}
       />
       <MainTab.Screen
         name="SummaryTab"
         component={SummaryStackNavigator}
-        options={{ title: 'Summary' }}
+        options={{ title: 'Summary', tabBarIcon: summaryTabIcon }}
       />
     </MainTab.Navigator>
   );

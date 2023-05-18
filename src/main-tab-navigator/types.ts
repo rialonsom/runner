@@ -35,3 +35,9 @@ export type MainTabScreenProps = CompositeScreenProps<
   BottomTabScreenProps<MainTabParamList>,
   RootStackScreenProps
 >;
+
+export type TabBarIconProps = {
+  focused: boolean;
+  color: string;
+  size: number;
+};
