@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useRuns } from '../data/useRuns';
 import {
   RunnerDivider,
@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSummaryDisplayData } from './useSummaryDisplayData';
 import { ThemeContext } from '../theme';
 import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
+import ArrowDown from '../../assets/arrow-down-icon.svg';
 
 export function SummaryYearTab() {
   const { theme } = useContext(ThemeContext);
@@ -40,9 +41,17 @@ export function SummaryYearTab() {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => setYearPickerOpen(!yearPickerOpen)}>
-        <RunnerText style={styles.pickerValue}>{selectedYear}</RunnerText>
-      </Pressable>
+      <TouchableOpacity
+        onPress={() => setYearPickerOpen(!yearPickerOpen)}
+        style={styles.pickerValueContainer}>
+        <RunnerText style={styles.pickerValueText}>{selectedYear}</RunnerText>
+        <ArrowDown
+          width={12}
+          height={12}
+          style={styles.pickerValueArrow}
+          fill={theme.colors.text}
+        />
+      </TouchableOpacity>
       <View
         style={[
           { backgroundColor: theme.colors.card },
@@ -95,10 +104,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  pickerValue: {
+  pickerValueContainer: {
+    flexDirection: 'row',
+    marginLeft: 20,
+    marginTop: 20,
+  },
+  pickerValueText: {
     fontSize: 24,
-    paddingLeft: 20,
-    paddingTop: 20,
+  },
+  pickerValueArrow: {
+    marginLeft: 4,
+    alignSelf: 'center',
   },
   summaryContainer: {
     margin: 16,

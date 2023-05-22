@@ -43,6 +43,7 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
       snapPoints={['50%']}
       enableHandlePanningGesture={false}
       handleComponent={null}
+      style={[styles.bottomSheet, { backgroundColor: theme.colors.card }]}
       backgroundStyle={{ backgroundColor: theme.colors.card }}>
       <Picker
         selectedValue={selectedOption}
@@ -75,5 +76,16 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
 const styles = StyleSheet.create({
   pickerItem: {
     fontSize: 18,
+  },
+  bottomSheet: {
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
 });
