@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import format from 'format-duration';
 import { RunDataContext } from '../data/RunDataProvider';
+import { convertToDegreeTimeString } from '../utils';
 
 export type SummaryDisplayData = {
   totalDistance: string;
@@ -35,7 +36,7 @@ export function useSummaryDisplayData(year: number | undefined = undefined) {
     return acc + pace / runs.length;
   }, 0);
 
-  const avgPace = format(avgPaceNumber * 60 * 1000);
+  const avgPace = convertToDegreeTimeString(avgPaceNumber * 60);
 
   return {
     totalDistance,
