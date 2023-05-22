@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { RunsStackScreenProps } from '../main-tab-navigator';
 import { ThemeContext } from '../theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import AddIcon from '../../assets/add-icon.svg';
+import { TouchableOpacity } from 'react-native';
 
 export function RunListHeaderRight() {
   const { theme } = useContext(ThemeContext);

@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { MainTabScreenProps } from '../main-tab-navigator';
 import { ThemeContext } from '../theme';
 import SettingsIcon from '../../assets/settings-icon.svg';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 
 export function MainTabNavigatorHeaderLeft() {
   const { theme } = useContext(ThemeContext);
