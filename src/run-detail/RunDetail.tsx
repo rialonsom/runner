@@ -14,6 +14,7 @@ import { Run } from '../data/storage/getRuns';
 import { getRunDisplayData } from '../utils';
 import { ThemeContext } from '../theme';
 import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
+import { useUserUnitPreference } from '../user-preferences';
 
 export function RunDetail() {
   const { theme } = useContext(ThemeContext);
@@ -22,8 +23,9 @@ export function RunDetail() {
   const { runId } = route.params;
   const run = useRun(runId);
   const { dispatch: runDataDispatch } = useContext(RunDataContext);
+  const [unitPreference] = useUserUnitPreference();
 
-  const runDisplayData = run && getRunDisplayData(run);
+  const runDisplayData = run && getRunDisplayData(run, unitPreference);
 
   const onPressDelete = useCallback(() => {
     if (run === undefined) {

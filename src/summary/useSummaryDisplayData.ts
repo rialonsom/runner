@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import format from 'format-duration';
 import { RunDataContext } from '../data/RunDataProvider';
-import { convertToDegreeTimeString } from '../utils';
+import { convertDistanceFromMeters, convertToDegreeTimeString } from '../utils';
+import { useUserUnitPreference } from '../user-preferences';
 
 export type SummaryDisplayData = {
   totalDistance: string;
@@ -12,16 +13,21 @@ export type SummaryDisplayData = {
 
 export function useSummaryDisplayData(year: number | undefined = undefined) {
   const { state } = useContext(RunDataContext);
+  const [unitPreference] = useUserUnitPreference();
+
   let runs = state;
 
   if (year !== undefined) {
     runs = runs.filter(item => item.date.getFullYear() === year);
   }
 
-  const totalDistance =
-    (runs.reduce((acc, cur) => acc + cur.distance_meters, 0) / 1000).toFixed(
-      2,
-    ) + ' km';
+  const totalDistanceMeters = runs.reduce(
+    (acc, cur) => acc + cur.distance_meters,
+    0,
+  );
+  const { convertedDistance: totalDistanceNumber, distanceSymbol } =
+    convertDistanceFromMeters(totalDistanceMeters, unitPreference);
+  const totalDistance = totalDistanceNumber.toFixed(2) + ' ' + distanceSymbol;
 
   const avgDuration = format(
     (runs.reduce((acc, cur) => acc + cur.duration_seconds, 0) / runs.length) *
@@ -31,12 +37,16 @@ export function useSummaryDisplayData(year: number | undefined = undefined) {
   const runQuantity = runs.length.toString();
 
   const avgPaceNumber = runs.reduce((acc, cur) => {
-    const pace = cur.duration_seconds / 60 / (cur.distance_meters / 1000);
+    const { convertedDistance } = convertDistanceFromMeters(
+      cur.distance_meters,
+      unitPreference,
+    );
+    const pace = cur.duration_seconds / convertedDistance;
 
     return acc + pace / runs.length;
   }, 0);
 
-  const avgPace = convertToDegreeTimeString(avgPaceNumber * 60);
+  const avgPace = convertToDegreeTimeString(avgPaceNumber);
 
   return {
     totalDistance,

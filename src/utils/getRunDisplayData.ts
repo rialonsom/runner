@@ -1,6 +1,8 @@
-import { Run } from '../data/storage/getRuns';
 import format from 'format-duration';
 import { convertToDegreeTimeString } from './convertToDegreeTimeString';
+import { UnitPreference } from '../user-preferences';
+import { convertDistanceFromMeters } from './convertDistanceFromMeters';
+import { Run } from '../data/storage/getRuns';
 
 export type RunDisplayData = {
   _id: string;
@@ -10,16 +12,23 @@ export type RunDisplayData = {
   pace: string;
 };
 
-export function getRunDisplayData(run: Run): RunDisplayData {
+export function getRunDisplayData(
+  run: Run,
+  unitPreference: UnitPreference,
+): RunDisplayData {
+  const { convertedDistance, distanceSymbol } = convertDistanceFromMeters(
+    run.distance_meters,
+    unitPreference,
+  );
+
   const _id = run._id;
   const duration = format(run.duration_seconds * 1000);
 
-  const paceSeconds =
-    (run.duration_seconds / 60 / (run.distance_meters / 1000)) * 60;
+  const paceSeconds = (run.duration_seconds / 60 / convertedDistance) * 60;
 
-  const pace = convertToDegreeTimeString(paceSeconds);
+  const pace = convertToDegreeTimeString(paceSeconds) + '/' + distanceSymbol;
 
-  const distance = (run.distance_meters / 1000).toFixed(2) + ' km';
+  const distance = convertedDistance.toFixed(2) + ' ' + distanceSymbol;
   const date = new Date(run.date).toLocaleString(undefined, {
     year: 'numeric',
     month: 'long',
