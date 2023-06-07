@@ -6,7 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Alert, Button, Pressable } from 'react-native';
+import { Alert, Button } from 'react-native';
 import {
   RootStackParamList,
   RootStackScreenProps,
@@ -137,17 +137,15 @@ export function RunCreation() {
   return (
     <RunnerView>
       <RunnerInputGroup>
-        <RunnerInputRow>
+        <RunnerInputRow onPress={() => setDatePickerOpen(true)}>
           <RunnerText>Date</RunnerText>
-          <Pressable onPress={() => setDatePickerOpen(true)}>
-            <RunnerText>
-              {date.toLocaleString(undefined, {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </RunnerText>
-          </Pressable>
+          <RunnerText>
+            {date.toLocaleString(undefined, {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </RunnerText>
           <DatePicker
             modal
             open={datePickerOpen}
@@ -163,16 +161,14 @@ export function RunCreation() {
           />
         </RunnerInputRow>
         <RunnerDivider />
-        <RunnerInputRow>
+        <RunnerInputRow onPress={() => setTimePickerOpen(true)}>
           <RunnerText>Time</RunnerText>
-          <Pressable onPress={() => setTimePickerOpen(true)}>
-            <RunnerText>
-              {time.toLocaleString(undefined, {
-                hour: 'numeric',
-                minute: 'numeric',
-              })}
-            </RunnerText>
-          </Pressable>
+          <RunnerText>
+            {time.toLocaleString(undefined, {
+              hour: 'numeric',
+              minute: 'numeric',
+            })}
+          </RunnerText>
           <DatePicker
             modal
             open={timePickerOpen}
@@ -188,18 +184,14 @@ export function RunCreation() {
           />
         </RunnerInputRow>
         <RunnerDivider />
-        <RunnerInputRow>
+        <RunnerInputRow onPress={() => setDistancePickerOpen(true)}>
           <RunnerText>Distance</RunnerText>
-          <Pressable onPress={() => setDistancePickerOpen(true)}>
-            <RunnerText>{distanceString}</RunnerText>
-          </Pressable>
+          <RunnerText>{distanceString}</RunnerText>
         </RunnerInputRow>
         <RunnerDivider />
-        <RunnerInputRow>
+        <RunnerInputRow onPress={() => setDurationPickerOpen(true)}>
           <RunnerText>Duration</RunnerText>
-          <Pressable onPress={() => setDurationPickerOpen(true)}>
-            <RunnerText>{durationString}</RunnerText>
-          </Pressable>
+          <RunnerText>{durationString}</RunnerText>
         </RunnerInputRow>
       </RunnerInputGroup>
       <RunnerDistancePicker

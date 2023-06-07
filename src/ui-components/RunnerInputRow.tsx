@@ -1,8 +1,17 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
-export function RunnerInputRow({ children }: { children: React.ReactNode }) {
-  return <View style={[styles.container]}>{children}</View>;
+type RunnerInputRowProps = {
+  children: React.ReactNode;
+  onPress?: () => void;
+};
+
+export function RunnerInputRow(props: RunnerInputRowProps) {
+  return (
+    <Pressable onPress={props.onPress}>
+      <View style={[styles.container]}>{props.children}</View>
+    </Pressable>
+  );
 }
 
 const styles = StyleSheet.create({
