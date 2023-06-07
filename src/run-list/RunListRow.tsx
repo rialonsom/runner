@@ -6,6 +6,7 @@ import { Run } from '../data/storage/getRuns';
 import { RunnerText } from '../ui-components';
 import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 import { ThemeContext } from '../theme';
+import { useUserUnitPreference } from '../user-preferences';
 
 export function RunListRow(props: {
   run: Run;
@@ -13,7 +14,8 @@ export function RunListRow(props: {
   navigation: RunsStackScreenProps['navigation'];
 }) {
   const { theme } = useContext(ThemeContext);
-  const runDisplayData = getRunDisplayData(props.run);
+  const [unitPreference] = useUserUnitPreference();
+  const runDisplayData = getRunDisplayData(props.run, unitPreference);
 
   return (
     <TouchableOpacity
