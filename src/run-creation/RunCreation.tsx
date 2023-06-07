@@ -56,7 +56,7 @@ export function RunCreation() {
 
   const { dispatch: runDataDispatch } = useContext(RunDataContext);
 
-  const [distanceMeters, setDistance] = useState(editRun?.distance ?? 0);
+  const [distanceMeters, setDistanceMeters] = useState(editRun?.distance ?? 0);
   const [durationSeconds, setDurationSeconds] = useState(
     editRun?.duration ?? 0,
   );
@@ -207,7 +207,7 @@ export function RunCreation() {
         initialSelectedValue={distanceMeters}
         onSelect={(selectedValue: number) => {
           setDistancePickerOpen(false);
-          setDistance(selectedValue);
+          setDistanceMeters(selectedValue);
         }}
         onCancel={() => {
           setDistancePickerOpen(false);
