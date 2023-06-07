@@ -6,7 +6,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Alert, Button, Pressable, StyleSheet, TextInput } from 'react-native';
+import { Alert, Button, Pressable } from 'react-native';
 import {
   RootStackParamList,
   RootStackScreenProps,
@@ -16,11 +16,13 @@ import {
   RunnerInputGroup,
   RunnerDivider,
   RunnerText,
+  RunnerInputRow,
 } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
 import { RunDataContext, RunDataReducerAction } from '../data/RunDataProvider';
 import { getRun } from '../data/storage/getRun';
 import { ThemeContext } from '../theme';
+import { Text } from 'react-native';
 
 export function RunCreation() {
   const { theme } = useContext(ThemeContext);
@@ -49,11 +51,13 @@ export function RunCreation() {
 
   const { dispatch: runDataDispatch } = useContext(RunDataContext);
 
-  const [distance, setDistance] = useState(editRun?.distance ?? '');
-  const [duration, setDuration] = useState(editRun?.duration ?? '');
+  const [distance] = useState(editRun?.distance ?? '');
+  const [duration] = useState(editRun?.duration ?? '');
   const [date, setDate] = useState(editRun?.date ?? new Date());
+  const [time, setTime] = useState(editRun?.date ?? new Date());
 
   const [datePickerOpen, setDatePickerOpen] = useState(false);
+  const [timePickerOpen, setTimePickerOpen] = useState(false);
 
   const onPressDone = useCallback(() => {
     if (distance.length === 0 || duration.length === 0) {
@@ -65,11 +69,19 @@ export function RunCreation() {
       return;
     }
 
+    const dateTime = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDay(),
+      time.getHours(),
+      time.getMinutes(),
+    );
+
     const run = {
       _id: editRun?._id ?? '',
       duration_seconds: parseInt(duration, 10) * 60,
       distance_meters: parseInt(distance, 10),
-      date: date,
+      date: dateTime,
     };
 
     runDataDispatch({
@@ -85,6 +97,7 @@ export function RunCreation() {
     isEdit,
     navigation,
     runDataDispatch,
+    time,
   ]);
 
   useEffect(() => {
@@ -109,57 +122,67 @@ export function RunCreation() {
   return (
     <RunnerView>
       <RunnerInputGroup>
-        <TextInput
-          style={[{ color: theme.colors.text }, styles.inputField]}
-          placeholder="Distance (m)"
-          inputMode="numeric"
-          value={distance}
-          onChangeText={setDistance}
-        />
+        <RunnerInputRow>
+          <RunnerText>Date</RunnerText>
+          <Pressable onPress={() => setDatePickerOpen(true)}>
+            <RunnerText>
+              {date.toLocaleString(undefined, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </RunnerText>
+          </Pressable>
+          <DatePicker
+            modal
+            open={datePickerOpen}
+            mode="date"
+            date={date}
+            onConfirm={(datePicked: Date) => {
+              setDatePickerOpen(false);
+              setDate(datePicked);
+            }}
+            onCancel={() => {
+              setDatePickerOpen(false);
+            }}
+          />
+        </RunnerInputRow>
         <RunnerDivider />
-        <TextInput
-          style={[{ color: theme.colors.text }, styles.inputField]}
-          placeholder="Duration (minutes)"
-          inputMode="numeric"
-          value={duration}
-          onChangeText={setDuration}
-        />
+        <RunnerInputRow>
+          <RunnerText>Time</RunnerText>
+          <Pressable onPress={() => setTimePickerOpen(true)}>
+            <RunnerText>
+              {time.toLocaleString(undefined, {
+                hour: 'numeric',
+                minute: 'numeric',
+              })}
+            </RunnerText>
+          </Pressable>
+          <DatePicker
+            modal
+            open={timePickerOpen}
+            mode="time"
+            date={time}
+            onConfirm={(timePicked: Date) => {
+              setTimePickerOpen(false);
+              setTime(timePicked);
+            }}
+            onCancel={() => {
+              setTimePickerOpen(false);
+            }}
+          />
+        </RunnerInputRow>
         <RunnerDivider />
-        <Pressable onPress={() => setDatePickerOpen(true)}>
-          <RunnerText style={styles.dateButton}>
-            {date.toLocaleString(undefined, {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: 'numeric',
-              minute: 'numeric',
-            })}
-          </RunnerText>
-        </Pressable>
-        <DatePicker
-          modal
-          open={datePickerOpen}
-          mode="datetime"
-          date={date}
-          onConfirm={(datePicked: Date) => {
-            setDatePickerOpen(false);
-            setDate(datePicked);
-          }}
-          onCancel={() => {
-            setDatePickerOpen(false);
-          }}
-        />
+        <RunnerInputRow>
+          <Text>Distance</Text>
+          <Text>21.1 km</Text>
+        </RunnerInputRow>
+        <RunnerDivider />
+        <RunnerInputRow>
+          <Text>Duration</Text>
+          <Text>2:05:00</Text>
+        </RunnerInputRow>
       </RunnerInputGroup>
     </RunnerView>
   );
 }
-
-const styles = StyleSheet.create({
-  inputField: {
-    fontSize: 16,
-  },
-  dateButton: {
-    fontSize: 16,
-  },
-});
