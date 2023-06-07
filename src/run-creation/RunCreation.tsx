@@ -196,7 +196,7 @@ export function RunCreation() {
       </RunnerInputGroup>
       <RunnerDistancePicker
         isOpen={distancePickerOpen}
-        initialSelectedValue={0}
+        initialSelectedValue={distanceMeters}
         onSelect={(selectedValue: number) => {
           setDistancePickerOpen(false);
           setDistance(selectedValue);

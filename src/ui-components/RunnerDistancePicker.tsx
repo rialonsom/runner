@@ -5,7 +5,7 @@ import React from 'react';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { ThemeContext } from '../theme';
 import { UnitPreference, useUserUnitPreference } from '../user-preferences';
-import { convertDistanceToMeters } from '../utils';
+import { convertDistanceFromMeters, convertDistanceToMeters } from '../utils';
 import { RunnerSecondaryText } from './RunnerSecondaryText';
 
 export type RunnerDistancePickerOption = {
@@ -48,8 +48,15 @@ export function RunnerDistancePicker(
     });
   }
 
-  const [selectedDistance, setSelectedDistance] = useState(0);
-  const [selectedPrecision, setSelectedPrecision] = useState(0);
+  const { convertedDistance: initialSelectedDistance } =
+    convertDistanceFromMeters(props.initialSelectedValue, unitPreference);
+
+  const [selectedDistance, setSelectedDistance] = useState(
+    Math.trunc(initialSelectedDistance),
+  );
+  const [selectedPrecision, setSelectedPrecision] = useState(
+    Math.trunc((initialSelectedDistance % 1) * 100),
+  );
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
