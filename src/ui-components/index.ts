@@ -5,3 +5,4 @@ export * from './RunnerPicker';
 export * from './RunnerText';
 export * from './RunnerInputRow';
 export * from './RunnerDistancePicker';
+export * from './RunnerDurationPicker';
