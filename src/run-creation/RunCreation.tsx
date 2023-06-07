@@ -17,17 +17,21 @@ import {
   RunnerDivider,
   RunnerText,
   RunnerInputRow,
+  RunnerDistancePicker,
 } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
 import { RunDataContext, RunDataReducerAction } from '../data/RunDataProvider';
 import { getRun } from '../data/storage/getRun';
 import { ThemeContext } from '../theme';
 import { Text } from 'react-native';
+import { convertDistanceFromMeters } from '../utils';
+import { useUserUnitPreference } from '../user-preferences';
 
 export function RunCreation() {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RootStackScreenProps['navigation']>();
   const route = useRoute<RouteProp<RootStackParamList, 'RunCreation'>>();
+  const [unitPreference] = useUserUnitPreference();
 
   const editRun = useMemo(() => {
     const isEditMode = route.params !== undefined;
@@ -42,7 +46,7 @@ export function RunCreation() {
 
     return {
       _id: run._id,
-      distance: run.distance_meters.toString(),
+      distance: run.distance_meters,
       duration: (run.duration_seconds / 60).toString(),
       date: run.date,
     };
@@ -51,16 +55,17 @@ export function RunCreation() {
 
   const { dispatch: runDataDispatch } = useContext(RunDataContext);
 
-  const [distance] = useState(editRun?.distance ?? '');
+  const [distanceMeters, setDistance] = useState(editRun?.distance ?? 0);
   const [duration] = useState(editRun?.duration ?? '');
   const [date, setDate] = useState(editRun?.date ?? new Date());
   const [time, setTime] = useState(editRun?.date ?? new Date());
 
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [timePickerOpen, setTimePickerOpen] = useState(false);
+  const [distancePickerOpen, setDistancePickerOpen] = useState(false);
 
   const onPressDone = useCallback(() => {
-    if (distance.length === 0 || duration.length === 0) {
+    if (distanceMeters === 0 || duration.length === 0) {
       Alert.alert(
         'Missing fields',
         'You must complete every field before continuing.',
@@ -80,7 +85,7 @@ export function RunCreation() {
     const run = {
       _id: editRun?._id ?? '',
       duration_seconds: parseInt(duration, 10) * 60,
-      distance_meters: parseInt(distance, 10),
+      distance_meters: distanceMeters,
       date: dateTime,
     };
 
@@ -91,7 +96,7 @@ export function RunCreation() {
     navigation.goBack();
   }, [
     date,
-    distance,
+    distanceMeters,
     duration,
     editRun?._id,
     isEdit,
@@ -118,6 +123,10 @@ export function RunCreation() {
     const title = isEdit ? 'Edit run' : 'New run';
     navigation.setOptions({ title, headerLeft, headerRight });
   }, [isEdit, navigation, onPressDone, theme.colors.primary]);
+
+  const { convertedDistance: distance, distanceSymbol } =
+    convertDistanceFromMeters(distanceMeters, unitPreference);
+  const distanceString = distance.toFixed(2) + ' ' + distanceSymbol;
 
   return (
     <RunnerView>
@@ -174,8 +183,10 @@ export function RunCreation() {
         </RunnerInputRow>
         <RunnerDivider />
         <RunnerInputRow>
-          <Text>Distance</Text>
-          <Text>21.1 km</Text>
+          <RunnerText>Distance</RunnerText>
+          <Pressable onPress={() => setDistancePickerOpen(true)}>
+            <RunnerText>{distanceString}</RunnerText>
+          </Pressable>
         </RunnerInputRow>
         <RunnerDivider />
         <RunnerInputRow>
@@ -183,6 +194,17 @@ export function RunCreation() {
           <Text>2:05:00</Text>
         </RunnerInputRow>
       </RunnerInputGroup>
+      <RunnerDistancePicker
+        isOpen={distancePickerOpen}
+        initialSelectedValue={0}
+        onSelect={(selectedValue: number) => {
+          setDistancePickerOpen(false);
+          setDistance(selectedValue);
+        }}
+        onCancel={() => {
+          setDistancePickerOpen(false);
+        }}
+      />
     </RunnerView>
   );
 }
