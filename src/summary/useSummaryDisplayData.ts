@@ -9,13 +9,20 @@ export type SummaryDisplayData = {
   avgDuration: string;
   runQuantity: string;
   avgPace: string;
+  minYear: string;
+  maxYear: string;
 };
 
-export function useSummaryDisplayData(year: number | undefined = undefined) {
+export function useSummaryDisplayData(
+  year: number | undefined = undefined,
+): SummaryDisplayData {
   const { state } = useContext(RunDataContext);
   const [unitPreference] = useUserUnitPreference();
 
   let runs = state;
+
+  const minYear = runs[runs.length - 1].date.getFullYear().toString();
+  const maxYear = runs[0].date.getFullYear().toString();
 
   if (year !== undefined) {
     runs = runs.filter(item => item.date.getFullYear() === year);
@@ -53,5 +60,7 @@ export function useSummaryDisplayData(year: number | undefined = undefined) {
     avgDuration,
     runQuantity,
     avgPace,
+    minYear,
+    maxYear,
   };
 }
