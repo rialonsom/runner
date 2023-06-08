@@ -4,11 +4,12 @@ import { SummaryAllTab } from './SummaryAllTab';
 import { useWindowDimensions } from 'react-native';
 import { SummaryYearTab } from './SummaryYearTab';
 import { ThemeContext } from '../theme';
+import { SummaryMonthTab } from './SummaryMonthTab';
 
 const renderScene = SceneMap({
   all: SummaryAllTab,
   year: SummaryYearTab,
-  // month: SummaryMonthTab, // coming later
+  month: SummaryMonthTab,
 });
 
 export function Summary() {
@@ -17,7 +18,7 @@ export function Summary() {
 
   const [index, setIndex] = useState(0);
   const routes = [
-    // { key: 'month', title: 'Month' },
+    { key: 'month', title: 'Month' },
     { key: 'year', title: 'Year' },
     { key: 'all', title: 'All' },
   ];
