@@ -15,6 +15,7 @@ export type SummaryDisplayData = {
 
 export function useSummaryDisplayData(
   year: number | undefined = undefined,
+  month: number | undefined = undefined,
 ): SummaryDisplayData {
   const { state } = useContext(RunDataContext);
   const [unitPreference] = useUserUnitPreference();
@@ -26,6 +27,10 @@ export function useSummaryDisplayData(
 
   if (year !== undefined) {
     runs = runs.filter(item => item.date.getFullYear() === year);
+  }
+
+  if (month !== undefined) {
+    runs = runs.filter(item => item.date.getMonth() === month);
   }
 
   const totalDistanceMeters = runs.reduce(
