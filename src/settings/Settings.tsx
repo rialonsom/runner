@@ -4,12 +4,11 @@ import {
   useUserUnitPreference,
 } from '../user-preferences';
 import { StyleSheet, View } from 'react-native';
-import { RunnerDivider, RunnerText } from '../ui-components';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { RunnerDivider } from '../ui-components';
 import { useNavigation } from '@react-navigation/native';
 import { SettingsStackScreenProps } from './types';
 import { ThemeContext } from '../theme';
-import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
+import { SettingsRow } from './SettingsRow';
 
 export function Settings() {
   const { theme } = useContext(ThemeContext);
@@ -20,19 +19,17 @@ export function Settings() {
 
   return (
     <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
-      <TouchableOpacity onPress={() => navigation.navigate('ThemeSetting')}>
-        <View style={styles.settingRow}>
-          <RunnerText>Theme</RunnerText>
-          <RunnerSecondaryText>{themePreference} &gt;</RunnerSecondaryText>
-        </View>
-      </TouchableOpacity>
+      <SettingsRow
+        preferenceName="Theme"
+        preferenceValue={themePreference}
+        onPress={() => navigation.navigate('ThemeSetting')}
+      />
       <RunnerDivider />
-      <TouchableOpacity onPress={() => navigation.navigate('UnitSetting')}>
-        <View style={styles.settingRow}>
-          <RunnerText>Unit system</RunnerText>
-          <RunnerSecondaryText>{unitPreference} &gt;</RunnerSecondaryText>
-        </View>
-      </TouchableOpacity>
+      <SettingsRow
+        preferenceName="Unit system"
+        preferenceValue={unitPreference}
+        onPress={() => navigation.navigate('UnitSetting')}
+      />
     </View>
   );
 }
@@ -42,12 +39,5 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 12,
     paddingVertical: 10,
-  },
-  settingRow: {
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 24,
   },
 });
