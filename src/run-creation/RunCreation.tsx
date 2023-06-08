@@ -81,7 +81,7 @@ export function RunCreation() {
     const dateTime = new Date(
       date.getFullYear(),
       date.getMonth(),
-      date.getDay(),
+      date.getDate(),
       time.getHours(),
       time.getMinutes(),
     );
