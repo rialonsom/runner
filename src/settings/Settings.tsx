@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import {
-  useUserDummyPreference,
   useUserThemePreference,
   useUserUnitPreference,
 } from '../user-preferences';
-import { StyleSheet, Switch, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { RunnerDivider, RunnerText } from '../ui-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
@@ -16,19 +15,11 @@ export function Settings() {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<SettingsStackScreenProps['navigation']>();
 
-  const [dummyPreference, setDummyPreference] = useUserDummyPreference();
   const [themePreference] = useUserThemePreference();
   const [unitPreference] = useUserUnitPreference();
 
-  const toggleSwitch = () => setDummyPreference(!dummyPreference);
-
   return (
     <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
-      <View style={styles.settingRow}>
-        <RunnerText>Dummy setting</RunnerText>
-        <Switch value={dummyPreference} onValueChange={toggleSwitch} />
-      </View>
-      <RunnerDivider />
       <TouchableOpacity onPress={() => navigation.navigate('ThemeSetting')}>
         <View style={styles.settingRow}>
           <RunnerText>Theme</RunnerText>
@@ -57,6 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 28,
+    height: 24,
   },
 });
