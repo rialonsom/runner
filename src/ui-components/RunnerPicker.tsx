@@ -54,7 +54,7 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
             key={option.key}
             label={option.label}
             value={option.value}
-            enabled={option.enabled ?? true}
+            enabled={option.enabled !== undefined ? option.enabled : true}
             color={theme.colors.text}
           />
         ))}
