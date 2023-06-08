@@ -6,6 +6,7 @@ import {
   useUserThemePreference,
 } from '../../user-preferences';
 import { ThemeContext } from '../../theme';
+import Checkmark from '../../../assets/checkmark-icon.svg';
 
 export function ThemeSetting() {
   const { theme } = useContext(ThemeContext);
@@ -16,28 +17,30 @@ export function ThemeSetting() {
       <TouchableOpacity
         onPress={() => setThemePreference(ThemePreference.Light)}>
         <View style={styles.settingRow}>
-          <RunnerText>
-            Light {themePreference === ThemePreference.Light && '(selected)'}
-          </RunnerText>
+          <RunnerText>Light </RunnerText>
+          {themePreference === ThemePreference.Light && (
+            <Checkmark fill={theme.colors.primary} width={18} height={18} />
+          )}
         </View>
       </TouchableOpacity>
       <RunnerDivider />
       <TouchableOpacity
         onPress={() => setThemePreference(ThemePreference.Dark)}>
         <View style={styles.settingRow}>
-          <RunnerText>
-            Dark {themePreference === ThemePreference.Dark && '(selected)'}
-          </RunnerText>
+          <RunnerText>Dark</RunnerText>
+          {themePreference === ThemePreference.Dark && (
+            <Checkmark fill={theme.colors.primary} width={18} height={18} />
+          )}
         </View>
       </TouchableOpacity>
       <RunnerDivider />
       <TouchableOpacity
         onPress={() => setThemePreference(ThemePreference.System)}>
         <View style={styles.settingRow}>
-          <RunnerText>
-            Same as system{' '}
-            {themePreference === ThemePreference.System && '(selected)'}
-          </RunnerText>
+          <RunnerText>Same as system</RunnerText>
+          {themePreference === ThemePreference.System && (
+            <Checkmark fill={theme.colors.primary} width={18} height={18} />
+          )}
         </View>
       </TouchableOpacity>
     </View>
@@ -55,6 +58,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 28,
+    height: 24,
   },
 });
