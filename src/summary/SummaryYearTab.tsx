@@ -57,28 +57,28 @@ export function SummaryYearTab() {
           { backgroundColor: theme.colors.card },
           styles.summaryContainer,
         ]}>
-        <RunnerSecondaryText style={styles.title}>
+        <RunnerSecondaryText style={styles.sectionTitle}>
           Total runs
         </RunnerSecondaryText>
         <RunnerText style={styles.value}>
           {summaryDisplayData.runQuantity}
         </RunnerText>
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.title}>
+        <RunnerSecondaryText style={styles.sectionTitle}>
           Total distance
         </RunnerSecondaryText>
         <RunnerText style={styles.value}>
           {summaryDisplayData.totalDistance}
         </RunnerText>
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.title}>
+        <RunnerSecondaryText style={styles.sectionTitle}>
           Average duration
         </RunnerSecondaryText>
         <RunnerText style={styles.value}>
           {summaryDisplayData.avgDuration}
         </RunnerText>
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.title}>
+        <RunnerSecondaryText style={styles.sectionTitle}>
           Average pace
         </RunnerSecondaryText>
         <RunnerText style={styles.value}>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
   },
-  title: {
+  sectionTitle: {
     fontSize: 16,
     fontWeight: '200',
   },
