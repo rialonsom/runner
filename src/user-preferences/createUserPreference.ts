@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import {
   UserPreference,
   getUserPreference,
-} from '../data/storage/getUserPreference';
-import { setUserPreference } from '../data/storage/setUserPreference';
-import { checkUserPreference } from '../data/storage/checkUserPreference';
+} from '../storage/getUserPreference';
+import { setUserPreference } from '../storage/setUserPreference';
+import { checkUserPreference } from '../storage/checkUserPreference';
 import { Subject } from 'rxjs';
 
 type UserPreferenceHook<T> = () => [T, (value: T) => void];
