@@ -3,8 +3,9 @@ import { Run } from './runModel';
 
 export function useRuns(): Run[] {
   const runs = useQuery(Run);
+  const runsByDateDescending = runs.sorted('date', true);
 
-  return Array.from(runs);
+  return Array.from(runsByDateDescending);
 }
 
 export function useRun(_id: string): Run | null {
