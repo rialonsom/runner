@@ -4,14 +4,17 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 import { AppNavigationContainer } from './AppNavigationContainer';
 import { ThemeProvider } from './theme';
+import { RealmProvider } from './data-realm/RealmProvider';
 
 function App(): JSX.Element {
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <ThemeProvider>
-        <AppNavigationContainer />
-      </ThemeProvider>
-    </GestureHandlerRootView>
+    <RealmProvider>
+      <GestureHandlerRootView style={styles.container}>
+        <ThemeProvider>
+          <AppNavigationContainer />
+        </ThemeProvider>
+      </GestureHandlerRootView>
+    </RealmProvider>
   );
 }
 
