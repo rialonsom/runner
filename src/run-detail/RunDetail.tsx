@@ -6,32 +6,29 @@ import {
   RunsStackScreenProps,
 } from '../main-tab-navigator';
 import { RunnerDivider, RunnerText } from '../ui-components';
-import { useRun } from '../data/useRun';
-import { RunDataReducerAction } from '../data/RunDataProvider';
-import { RunDataContext } from '../data/RunDataProvider';
-import { getRun } from '../data/storage/getRun';
-import { Run } from '../data/storage/getRuns';
 import { getRunDisplayData } from '../utils';
 import { ThemeContext } from '../theme';
 import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 import { useUserUnitPreference } from '../user-preferences';
+import { useRun } from '../data-realm/run/runHooks';
+import { deleteRun } from '../data-realm/run/runMutations';
+import { useRealm } from '../data-realm/RealmProvider';
 
 export function RunDetail() {
+  const realm = useRealm();
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RunsStackScreenProps['navigation']>();
   const route = useRoute<RouteProp<RunsStackParamList, 'RunDetail'>>();
   const { runId } = route.params;
   const run = useRun(runId);
-  const { dispatch: runDataDispatch } = useContext(RunDataContext);
   const [unitPreference] = useUserUnitPreference();
 
   const runDisplayData = run && getRunDisplayData(run, unitPreference);
 
   const onPressDelete = useCallback(() => {
-    if (run === undefined) {
+    if (run === null) {
       return;
     }
-    const runToDelete = getRun(run._id) as Run;
 
     Alert.alert('Delete run', 'Are you sure you want to delete this run?', [
       {
@@ -41,16 +38,14 @@ export function RunDetail() {
       {
         text: 'Delete',
         onPress: () => {
-          runDataDispatch({
-            action: RunDataReducerAction.Delete,
-            data: runToDelete,
-          });
+          deleteRun(run, realm);
+
           navigation.goBack();
         },
         style: 'destructive',
       },
     ]);
-  }, [navigation, run, runDataDispatch]);
+  }, [navigation, realm, run]);
 
   return (
     <View>
