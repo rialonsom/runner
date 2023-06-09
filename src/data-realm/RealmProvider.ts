@@ -6,5 +6,5 @@ const realmConfig: Realm.Configuration = {
   schema: [Run],
 };
 
-export const { RealmProvider, useObject, useQuery } =
+export const { RealmProvider, useObject, useQuery, useRealm } =
   createRealmContext(realmConfig);
