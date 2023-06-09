@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootStackNavigator } from './root-stack-navigator';
-import { RunDataProvider } from './data/RunDataProvider';
 import { ThemeContext } from './theme';
 
 export function AppNavigationContainer() {
@@ -9,9 +8,7 @@ export function AppNavigationContainer() {
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      <RunDataProvider>
-        <RootStackNavigator />
-      </RunDataProvider>
+      <RootStackNavigator />
     </NavigationContainer>
   );
 }
