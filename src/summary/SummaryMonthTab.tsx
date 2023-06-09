@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useRuns } from '../data/useRuns';
 import {
   RunnerDivider,
   RunnerPicker,
@@ -12,6 +11,7 @@ import { useSummaryDisplayData } from './useSummaryDisplayData';
 import { ThemeContext } from '../theme';
 import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 import ArrowDown from '../../assets/arrow-down-icon.svg';
+import { useRuns } from '../data-realm/run/runHooks';
 
 export function SummaryMonthTab() {
   const { theme } = useContext(ThemeContext);
