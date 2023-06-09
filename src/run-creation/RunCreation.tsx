@@ -21,44 +21,36 @@ import {
   RunnerDurationPicker,
 } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
-import { RunDataContext, RunDataReducerAction } from '../data/RunDataProvider';
-import { getRun } from '../data/storage/getRun';
 import { ThemeContext } from '../theme';
 import { convertDistanceFromMeters } from '../utils';
 import { useUserUnitPreference } from '../user-preferences';
 import format from 'format-duration';
+import { addRun, updateRun } from '../data-realm/run/runMutations';
+import { useRealm } from '../data-realm/RealmProvider';
+import { getRun } from '../data-realm/run/runQueries';
 
 export function RunCreation() {
+  const realm = useRealm();
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RootStackScreenProps['navigation']>();
   const route = useRoute<RouteProp<RootStackParamList, 'RunCreation'>>();
   const [unitPreference] = useUserUnitPreference();
 
   const editRun = useMemo(() => {
-    const isEditMode = route.params !== undefined;
-    if (!isEditMode) {
-      return;
+    if (route.params !== undefined && route.params.runId !== undefined) {
+      return getRun(route.params.runId, realm);
+    } else {
+      return null;
     }
+  }, [realm, route.params]);
 
-    const run = getRun(route.params.runId);
-    if (!run) {
-      return;
-    }
+  const isEdit = editRun !== null;
 
-    return {
-      _id: run._id,
-      distance: run.distance_meters,
-      duration: run.duration_seconds,
-      date: run.date,
-    };
-  }, [route.params]);
-  const isEdit = editRun !== undefined;
-
-  const { dispatch: runDataDispatch } = useContext(RunDataContext);
-
-  const [distanceMeters, setDistanceMeters] = useState(editRun?.distance ?? 0);
+  const [distanceMeters, setDistanceMeters] = useState(
+    editRun?.distanceMeters ?? 0,
+  );
   const [durationSeconds, setDurationSeconds] = useState(
-    editRun?.duration ?? 0,
+    editRun?.durationSeconds ?? 0,
   );
   const [date, setDate] = useState(editRun?.date ?? new Date());
   const [time, setTime] = useState(editRun?.date ?? new Date());
@@ -86,26 +78,26 @@ export function RunCreation() {
       time.getMinutes(),
     );
 
-    const run = {
-      _id: editRun?._id ?? '',
-      duration_seconds: durationSeconds,
-      distance_meters: distanceMeters,
+    const runProps = {
+      durationSeconds: durationSeconds,
+      distanceMeters: distanceMeters,
       date: dateTime,
     };
 
-    runDataDispatch({
-      action: isEdit ? RunDataReducerAction.Edit : RunDataReducerAction.Add,
-      data: run,
-    });
+    if (isEdit) {
+      updateRun(editRun, runProps, realm);
+    } else {
+      addRun(runProps, realm);
+    }
     navigation.goBack();
   }, [
     date,
     distanceMeters,
     durationSeconds,
-    editRun?._id,
+    editRun,
     isEdit,
     navigation,
-    runDataDispatch,
+    realm,
     time,
   ]);
 
