@@ -2,7 +2,7 @@ import format from 'format-duration';
 import { convertToDegreeTimeString } from './convertToDegreeTimeString';
 import { UnitPreference } from '../user-preferences';
 import { convertDistanceFromMeters } from './convertDistanceFromMeters';
-import { Run } from '../data/storage/getRuns';
+import { Run } from '../data-realm/run/runModel';
 
 export type RunDisplayData = {
   _id: string;
@@ -17,14 +17,14 @@ export function getRunDisplayData(
   unitPreference: UnitPreference,
 ): RunDisplayData {
   const { convertedDistance, distanceSymbol } = convertDistanceFromMeters(
-    run.distance_meters,
+    run.distanceMeters,
     unitPreference,
   );
 
   const _id = run._id;
-  const duration = format(run.duration_seconds * 1000);
+  const duration = format(run.durationSeconds * 1000);
 
-  const paceSeconds = (run.duration_seconds / 60 / convertedDistance) * 60;
+  const paceSeconds = (run.durationSeconds / 60 / convertedDistance) * 60;
 
   const pace = convertToDegreeTimeString(paceSeconds) + '/' + distanceSymbol;
 

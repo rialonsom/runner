@@ -10,15 +10,19 @@ import {
 import { RunListRow } from './RunListRow';
 import { useNavigation } from '@react-navigation/native';
 import { RunsStackScreenProps } from '../main-tab-navigator';
-import { useRuns } from '../data/useRuns';
-import { Run } from '../data/storage/getRuns';
 import { ThemeContext } from '../theme';
 import { RunnerText } from '../ui-components';
+import { useRuns } from '../data-realm/run/runHooks';
+import { Run } from '../data-realm/run/runModel';
 
 export function RunList() {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RunsStackScreenProps['navigation']>();
   const runs = useRuns();
+
+  if (runs.length === 0) {
+    return;
+  }
 
   const runSections = getRunSections(runs);
 

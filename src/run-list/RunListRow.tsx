@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RunsStackScreenProps } from '../main-tab-navigator';
 import { getRunDisplayData } from '../utils';
-import { Run } from '../data/storage/getRuns';
 import { RunnerText } from '../ui-components';
 import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 import { ThemeContext } from '../theme';
 import { useUserUnitPreference } from '../user-preferences';
+import { Run } from '../data-realm/run/runModel';
 
 export function RunListRow(props: {
   run: Run;
