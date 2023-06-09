@@ -1,7 +1,7 @@
 import Realm from 'realm';
 
 export class Run extends Realm.Object<Run> {
-  _id!: Realm.BSON.ObjectId;
+  _id!: string;
   durationSeconds!: number;
   distanceMeters!: number;
   date!: Date;
@@ -9,7 +9,7 @@ export class Run extends Realm.Object<Run> {
   static schema = {
     name: 'Run',
     properties: {
-      _id: 'objectId',
+      _id: 'string',
       durationSeconds: 'int',
       distanceMeters: 'int',
       date: 'date',
