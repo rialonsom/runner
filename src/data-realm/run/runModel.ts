@@ -17,3 +17,9 @@ export class Run extends Realm.Object<Run> {
     primaryKey: '_id',
   };
 }
+
+export type RunProps = {
+  durationSeconds: number;
+  distanceMeters: number;
+  date: Date;
+};
