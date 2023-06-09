@@ -14,6 +14,7 @@ import { ThemeContext } from '../theme';
 import { RunnerText } from '../ui-components';
 import { useRuns } from '../data-realm/run/runHooks';
 import { Run } from '../data-realm/run/runModel';
+import { RunListEmptyState } from './RunListEmptyState';
 
 export function RunList() {
   const { theme } = useContext(ThemeContext);
@@ -21,7 +22,7 @@ export function RunList() {
   const runs = useRuns();
 
   if (runs.length === 0) {
-    return;
+    return <RunListEmptyState />;
   }
 
   const runSections = getRunSections(runs);
