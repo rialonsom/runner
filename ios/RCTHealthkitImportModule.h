@@ -6,6 +6,7 @@
 //
 
 #import <React/RCTBridgeModule.h>
+#import <HealthKit/HealthKit.h>
 
 @interface RCTHealthkitImportModule : NSObject <RCTBridgeModule>
 
