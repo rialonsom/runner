@@ -1,9 +1,12 @@
 import { NativeModules } from 'react-native';
+import { HealthkitRun } from './types';
 
 const { HealthkitImportModule } = NativeModules;
 
 interface HealthkitImportInterface {
-  add(a: number, b: number): Promise<number>;
+  isAvailable(): Promise<boolean>;
+  requestAuthorization(): void;
+  fetchRuns(): Promise<Array<HealthkitRun>>;
 }
 
 export default HealthkitImportModule as HealthkitImportInterface;
