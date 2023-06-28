@@ -18,8 +18,11 @@ export function SummaryYearTab() {
   const navigation = useNavigation();
   const runs = useRuns();
 
-  const maxYear = runs[0].date.getFullYear();
-  const minYear = runs[runs.length - 1].date.getFullYear();
+  const today = new Date();
+
+  const maxYear = runs[0]?.date.getFullYear() ?? today.getFullYear();
+  const minYear =
+    runs[runs.length - 1]?.date.getFullYear() ?? today.getFullYear();
 
   const [selectedYear, setSelectedYear] = useState(maxYear);
   const [yearPickerOpen, setYearPickerOpen] = useState(false);

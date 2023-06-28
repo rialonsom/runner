@@ -8,8 +8,6 @@ export type SummaryDisplayData = {
   avgDuration: string;
   runQuantity: string;
   avgPace: string;
-  minYear: string;
-  maxYear: string;
 };
 
 export function useSummaryDisplayData(
@@ -19,9 +17,6 @@ export function useSummaryDisplayData(
   const [unitPreference] = useUserUnitPreference();
 
   let runs = useRuns();
-
-  const minYear = runs[runs.length - 1].date.getFullYear().toString();
-  const maxYear = runs[0].date.getFullYear().toString();
 
   if (year !== undefined) {
     runs = runs.filter(item => item.date.getFullYear() === year);
@@ -40,7 +35,7 @@ export function useSummaryDisplayData(
   const totalDistance = totalDistanceNumber.toFixed(2) + ' ' + distanceSymbol;
 
   const avgDuration = format(
-    (runs.reduce((acc, cur) => acc + cur.durationSeconds, 0) / runs.length) *
+    runs.reduce((acc, cur) => acc + cur.durationSeconds / runs.length, 0) *
       1000,
   );
 
@@ -63,7 +58,5 @@ export function useSummaryDisplayData(
     avgDuration,
     runQuantity,
     avgPace,
-    minYear,
-    maxYear,
   };
 }

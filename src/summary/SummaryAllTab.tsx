@@ -4,11 +4,18 @@ import React, { useContext } from 'react';
 import { RunnerDivider, RunnerText } from '../ui-components';
 import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 import { ThemeContext } from '../theme';
+import { useRuns } from '../data-realm/run/runHooks';
 
 export function SummaryAllTab() {
   const { theme } = useContext(ThemeContext);
+  const runs = useRuns();
   const summaryDisplayData = useSummaryDisplayData();
-  const { minYear, maxYear } = summaryDisplayData;
+
+  const today = new Date();
+
+  const maxYear = runs[0]?.date.getFullYear() ?? today.getFullYear();
+  const minYear =
+    runs[runs.length - 1]?.date.getFullYear() ?? today.getFullYear();
 
   return (
     <View>
