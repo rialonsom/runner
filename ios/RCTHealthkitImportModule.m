@@ -9,7 +9,6 @@
 #import "RCTHealthkitImportModule.h"
 #import <HealthKit/HealthKit.h>
 
-//HKHealhStore *healthStore = [[HKHealhStore alloc] init];
 
 @interface RCTHealthkitImportModule ()
 
@@ -35,15 +34,6 @@
   return YES;
 }
 
-RCT_EXPORT_METHOD(add:(double)a
-                  b:(double)b
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
-{
-  RCTLogInfo(@"HealthkitImportModule %f, %f", a, b);
-  resolve(@(a + b));
-}
-
 RCT_EXPORT_METHOD(isAvailable:(RCTPromiseResolveBlock)resolve rejected:(RCTPromiseRejectBlock)reject) {
   if (!self.healthStore) {
     resolve(@(NO));
@@ -52,15 +42,13 @@ RCT_EXPORT_METHOD(isAvailable:(RCTPromiseResolveBlock)resolve rejected:(RCTPromi
   }
 }
 
-RCT_EXPORT_METHOD(requestAuthorization:(RCTPromiseResolveBlock)resolve rejected:(RCTPromiseRejectBlock)reject) {
+RCT_EXPORT_METHOD(requestAuthorization) {
   if (!self.healthStore) {
     return;
   }
   
   NSArray *readTypes = @[[HKObjectType workoutType]];
-  [self.healthStore requestAuthorizationToShareTypes:nil readTypes:[NSSet setWithArray:readTypes] completion:^(BOOL success, NSError * _Nullable error) {
-    resolve(@(success));
-  }];
+  [self.healthStore requestAuthorizationToShareTypes:nil readTypes:[NSSet setWithArray:readTypes] completion:^(BOOL success, NSError * _Nullable error) {}];
 }
 
 RCT_EXPORT_METHOD(fetchRuns:(RCTPromiseResolveBlock)resolve rejected:(RCTPromiseRejectBlock)reject) {
