@@ -28,6 +28,7 @@ import format from 'format-duration';
 import { addRun, updateRun } from '../data-realm/run/runMutations';
 import { useRealm } from '../data-realm/RealmProvider';
 import { getRun } from '../data-realm/run/runQueries';
+import { RunSource } from '../data-realm/run/runModel';
 
 export function RunCreation() {
   const realm = useRealm();
@@ -87,7 +88,7 @@ export function RunCreation() {
     if (isEdit) {
       updateRun(editRun, runProps, realm);
     } else {
-      addRun(runProps, realm);
+      addRun(runProps, RunSource.Runner, realm);
     }
     navigation.goBack();
   }, [

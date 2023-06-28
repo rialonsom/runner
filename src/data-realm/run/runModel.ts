@@ -1,10 +1,16 @@
 import Realm from 'realm';
 
+export enum RunSource {
+  Runner = 'runner',
+  Healthkit = 'healthkit',
+}
+
 export class Run extends Realm.Object<Run> {
   _id!: string;
   durationSeconds!: number;
   distanceMeters!: number;
   date!: Date;
+  source!: RunSource;
 
   static schema = {
     name: 'Run',
@@ -13,6 +19,7 @@ export class Run extends Realm.Object<Run> {
       durationSeconds: 'int',
       distanceMeters: 'int',
       date: 'date',
+      source: 'string',
     },
     primaryKey: '_id',
   };

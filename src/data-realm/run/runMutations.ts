@@ -1,12 +1,13 @@
 import Realm from 'realm';
 import uuid from 'react-native-uuid';
-import { Run, RunProps } from './runModel';
+import { Run, RunProps, RunSource } from './runModel';
 
-export function addRun(newRunProps: RunProps, realm: Realm) {
+export function addRun(newRunProps: RunProps, source: RunSource, realm: Realm) {
   realm.write(() => {
     realm.create('Run', {
       ...newRunProps,
       _id: uuid.v4().toString(),
+      source,
     });
   });
 }
