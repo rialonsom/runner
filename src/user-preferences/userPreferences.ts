@@ -18,3 +18,6 @@ export const useUserUnitPreference = createUserPreference<UnitPreference>(
   'unit',
   UnitPreference.Metric,
 );
+
+export const useUserImportedHealthkitRunsPreference =
+  createUserPreference<boolean>('importedHealthkitRuns', false);
