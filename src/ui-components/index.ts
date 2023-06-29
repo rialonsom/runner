@@ -7,3 +7,4 @@ export * from './RunnerInputRow';
 export * from './RunnerDistancePicker';
 export * from './RunnerDurationPicker';
 export * from './RunnerSecondaryText';
+export * from './RunnerModal';
