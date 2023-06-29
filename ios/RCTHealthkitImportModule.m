@@ -42,13 +42,16 @@ RCT_EXPORT_METHOD(isAvailable:(RCTPromiseResolveBlock)resolve rejected:(RCTPromi
   }
 }
 
-RCT_EXPORT_METHOD(requestAuthorization) {
+RCT_EXPORT_METHOD(requestAuthorization:(RCTPromiseResolveBlock)resolve rejected:(RCTPromiseRejectBlock)reject) {
   if (!self.healthStore) {
+    resolve(nil);
     return;
   }
   
   NSArray *readTypes = @[[HKObjectType workoutType]];
-  [self.healthStore requestAuthorizationToShareTypes:nil readTypes:[NSSet setWithArray:readTypes] completion:^(BOOL success, NSError * _Nullable error) {}];
+  [self.healthStore requestAuthorizationToShareTypes:nil readTypes:[NSSet setWithArray:readTypes] completion:^(BOOL success, NSError * _Nullable error) {
+    resolve(nil);
+  }];
 }
 
 RCT_EXPORT_METHOD(fetchRuns:(RCTPromiseResolveBlock)resolve rejected:(RCTPromiseRejectBlock)reject) {

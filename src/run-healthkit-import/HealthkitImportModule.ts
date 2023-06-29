@@ -5,7 +5,7 @@ const { HealthkitImportModule } = NativeModules;
 
 interface HealthkitImportInterface {
   isAvailable(): Promise<boolean>;
-  requestAuthorization(): void;
+  requestAuthorization(): Promise<void>;
   fetchRuns(): Promise<Array<HealthkitRun>>;
 }
 
