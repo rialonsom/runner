@@ -30,3 +30,7 @@ export type RunProps = {
   distanceMeters: number;
   date: Date;
 };
+
+export type ImportedRunProps = RunProps & {
+  source: RunSource;
+};
