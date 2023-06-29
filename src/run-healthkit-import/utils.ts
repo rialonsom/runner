@@ -7,7 +7,7 @@ export function getRunsPropsFromHealthkitRuns(
   const runsProps = healthkitRuns.map(run => ({
     durationSeconds: run.durationSeconds,
     distanceMeters: run.distanceMeters,
-    date: new Date(run.timeIntervalSinceEpoch),
+    date: new Date(run.timeIntervalSinceEpoch * 1000),
     source: RunSource.Healthkit,
   }));
 
