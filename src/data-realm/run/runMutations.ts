@@ -1,6 +1,6 @@
 import Realm from 'realm';
 import uuid from 'react-native-uuid';
-import { Run, RunProps, RunSource } from './runModel';
+import { ImportedRunProps, Run, RunProps, RunSource } from './runModel';
 
 export function addRun(newRunProps: RunProps, realm: Realm) {
   realm.write(() => {
@@ -23,5 +23,31 @@ export function updateRun(run: Run, newRunProps: RunProps, realm: Realm) {
 export function deleteRun(run: Run, realm: Realm) {
   realm.write(() => {
     realm.delete(run);
+  });
+}
+
+export function addImportedRuns(
+  importedRuns: ImportedRunProps[],
+  realm: Realm,
+) {
+  realm.write(() => {
+    importedRuns.forEach(runProps => {
+      realm.create('Run', {
+        ...runProps,
+        _id: uuid.v4().toString(),
+      });
+    });
+  });
+}
+
+export function deleteImportedRunsFromSource(source: RunSource, realm: Realm) {
+  const runs = realm.objects('Run');
+
+  const runsFromSource = runs.filtered('source == $0', source);
+
+  realm.write(() => {
+    runsFromSource.forEach(run => {
+      realm.delete(run);
+    });
   });
 }
