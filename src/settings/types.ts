@@ -6,6 +6,7 @@ export type SettingsStackParamList = {
   Settings: undefined;
   ThemeSetting: undefined;
   UnitSetting: undefined;
+  HealthkitImportSetting: undefined;
 };
 
 export type SettingsStackScreenProps = CompositeScreenProps<

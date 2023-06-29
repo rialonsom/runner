@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ThemeSetting } from './screens/ThemeSetting';
 import { UnitSetting } from './screens/UnitSetting';
 import { ThemeContext } from '../theme';
+import { HealthkitImportSetting } from './screens/HealthkitImportSetting';
 
 const SettingsStack = createNativeStackNavigator();
 
@@ -26,6 +27,11 @@ export function SettingsStackNavigator() {
         name="UnitSetting"
         component={UnitSetting}
         options={{ title: 'Unit system' }}
+      />
+      <SettingsStack.Screen
+        name="HealthkitImportSetting"
+        component={HealthkitImportSetting}
+        options={{ title: 'Apple Fitness import' }}
       />
     </SettingsStack.Navigator>
   );

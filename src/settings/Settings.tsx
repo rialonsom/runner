@@ -3,7 +3,7 @@ import {
   useUserThemePreference,
   useUserUnitPreference,
 } from '../user-preferences';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { RunnerDivider } from '../ui-components';
 import { useNavigation } from '@react-navigation/native';
 import { SettingsStackScreenProps } from './types';
@@ -30,6 +30,16 @@ export function Settings() {
         preferenceValue={unitPreference}
         onPress={() => navigation.navigate('UnitSetting')}
       />
+      {Platform.OS === 'ios' && (
+        <>
+          <RunnerDivider />
+          <SettingsRow
+            preferenceName="Import runs from Apple Fitness"
+            preferenceValue={''}
+            onPress={() => navigation.navigate('HealthkitImportSetting')}
+          />
+        </>
+      )}
     </View>
   );
 }
