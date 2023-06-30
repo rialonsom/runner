@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RunnerSecondaryText, RunnerText } from '../ui-components';
 import ArrowRight from '../../assets/arrow-right-icon.svg';
 import { ThemeContext } from '../theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 type SettingsRowProps = {
   preferenceName: string;
