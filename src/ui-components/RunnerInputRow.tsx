@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 type RunnerInputRowProps = {
   children: React.ReactNode;
@@ -8,9 +8,9 @@ type RunnerInputRowProps = {
 
 export function RunnerInputRow(props: RunnerInputRowProps) {
   return (
-    <Pressable onPress={props.onPress}>
+    <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.container]}>{props.children}</View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 
