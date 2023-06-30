@@ -16,9 +16,10 @@ export function RunnerInputRow(props: RunnerInputRowProps) {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 2,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 40,
   },
 });

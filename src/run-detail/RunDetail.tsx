@@ -5,14 +5,14 @@ import {
   RunsStackParamList,
   RunsStackScreenProps,
 } from '../main-tab-navigator';
-import { RunnerDivider, RunnerText } from '../ui-components';
+import { RunnerDivider } from '../ui-components';
 import { getRunDisplayData } from '../utils';
 import { ThemeContext } from '../theme';
-import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
 import { useUserUnitPreference } from '../user-preferences';
 import { useRun } from '../data-realm/run/runHooks';
 import { deleteRun } from '../data-realm/run/runMutations';
 import { useRealm } from '../data-realm/RealmProvider';
+import { RunDetailRow } from './RunDetailRow';
 
 export function RunDetail() {
   const realm = useRealm();
@@ -50,17 +50,13 @@ export function RunDetail() {
   return (
     <View>
       <View style={[{ backgroundColor: theme.colors.card }, styles.container]}>
-        <RunnerSecondaryText style={styles.title}>Distance</RunnerSecondaryText>
-        <RunnerText style={styles.value}>{runDisplayData?.distance}</RunnerText>
+        <RunDetailRow stat="Distance" value={runDisplayData?.distance} />
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.title}>Duration</RunnerSecondaryText>
-        <RunnerText style={styles.value}>{runDisplayData?.duration}</RunnerText>
+        <RunDetailRow stat="Duration" value={runDisplayData?.duration} />
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.title}>Pace</RunnerSecondaryText>
-        <RunnerText style={styles.value}>{runDisplayData?.pace}</RunnerText>
+        <RunDetailRow stat="Pace" value={runDisplayData?.pace} />
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.title}>Date</RunnerSecondaryText>
-        <RunnerText style={styles.value}>{runDisplayData?.date}</RunnerText>
+        <RunDetailRow stat="Date" value={runDisplayData?.date} />
       </View>
       <Button title="Delete" color="red" onPress={onPressDelete} />
     </View>
@@ -71,13 +67,6 @@ const styles = StyleSheet.create({
   container: {
     margin: 16,
     borderRadius: 12,
-    padding: 16,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '300',
-  },
-  value: {
-    fontSize: 20,
+    paddingHorizontal: 16,
   },
 });

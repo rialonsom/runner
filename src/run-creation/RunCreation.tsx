@@ -6,14 +6,12 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Alert, Button } from 'react-native';
+import { Alert, Button, StyleSheet, View } from 'react-native';
 import {
   RootStackParamList,
   RootStackScreenProps,
 } from '../root-stack-navigator';
 import {
-  RunnerView,
-  RunnerInputGroup,
   RunnerDivider,
   RunnerText,
   RunnerInputRow,
@@ -127,8 +125,9 @@ export function RunCreation() {
   const durationString = format(durationSeconds * 1000);
 
   return (
-    <RunnerView>
-      <RunnerInputGroup>
+    <View style={styles.container}>
+      <View
+        style={[styles.formContainer, { backgroundColor: theme.colors.card }]}>
         <RunnerInputRow onPress={() => setDatePickerOpen(true)}>
           <RunnerText>Date</RunnerText>
           <RunnerText>
@@ -185,7 +184,7 @@ export function RunCreation() {
           <RunnerText>Duration</RunnerText>
           <RunnerText>{durationString}</RunnerText>
         </RunnerInputRow>
-      </RunnerInputGroup>
+      </View>
       <RunnerDistancePicker
         isOpen={distancePickerOpen}
         initialSelectedValue={distanceMeters}
@@ -208,6 +207,17 @@ export function RunCreation() {
           setDurationPickerOpen(false);
         }}
       />
-    </RunnerView>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  formContainer: {
+    margin: 16,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+  },
+});

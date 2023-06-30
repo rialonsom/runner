@@ -1,8 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { useSummaryDisplayData } from './useSummaryDisplayData';
 import React, { useContext } from 'react';
-import { RunnerDivider, RunnerText } from '../ui-components';
-import { RunnerSecondaryText } from '../ui-components/RunnerSecondaryText';
+import { RunnerDivider, RunnerStatRow, RunnerText } from '../ui-components';
 import { ThemeContext } from '../theme';
 import { useRuns } from '../data-realm/run/runHooks';
 
@@ -27,33 +26,22 @@ export function SummaryAllTab() {
           { backgroundColor: theme.colors.card },
           styles.summaryContainer,
         ]}>
-        <RunnerSecondaryText style={styles.sectionTitle}>
-          Total runs
-        </RunnerSecondaryText>
-        <RunnerText style={styles.value}>
-          {summaryDisplayData.runQuantity}
-        </RunnerText>
+        <RunnerStatRow
+          stat="Total runs"
+          value={summaryDisplayData.runQuantity}
+        />
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.sectionTitle}>
-          Total distance
-        </RunnerSecondaryText>
-        <RunnerText style={styles.value}>
-          {summaryDisplayData.totalDistance}
-        </RunnerText>
+        <RunnerStatRow
+          stat="Total distance"
+          value={summaryDisplayData.totalDistance}
+        />
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.sectionTitle}>
-          Average duration
-        </RunnerSecondaryText>
-        <RunnerText style={styles.value}>
-          {summaryDisplayData.avgDuration}
-        </RunnerText>
+        <RunnerStatRow
+          stat="Average duration"
+          value={summaryDisplayData.avgDuration}
+        />
         <RunnerDivider />
-        <RunnerSecondaryText style={styles.sectionTitle}>
-          Average pace
-        </RunnerSecondaryText>
-        <RunnerText style={styles.value}>
-          {summaryDisplayData.avgPace}
-        </RunnerText>
+        <RunnerStatRow stat="Average pace" value={summaryDisplayData.avgPace} />
       </View>
     </View>
   );
@@ -63,7 +51,7 @@ const styles = StyleSheet.create({
   summaryContainer: {
     margin: 16,
     borderRadius: 12,
-    padding: 16,
+    paddingHorizontal: 16,
   },
   title: {
     fontSize: 24,

@@ -7,7 +7,6 @@ export function RunnerDivider() {
 
 const styles = StyleSheet.create({
   divider: {
-    marginVertical: 10,
     borderBottomColor: 'lightgray',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
