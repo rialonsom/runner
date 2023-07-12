@@ -79,6 +79,7 @@ export function SummaryYearTab() {
       </View>
 
       <RunnerPicker
+        title="Select year"
         isOpen={yearPickerOpen}
         options={options}
         initialSelectedValue={maxYear}

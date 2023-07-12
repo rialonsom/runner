@@ -118,6 +118,7 @@ export function SummaryMonthTab() {
       </View>
 
       <RunnerPicker
+        title="Select year"
         isOpen={yearPickerOpen}
         options={yearOptions}
         initialSelectedValue={maxYear}
@@ -133,6 +134,7 @@ export function SummaryMonthTab() {
         onCancel={() => setYearPickerOpen(false)}
       />
       <RunnerPicker
+        title="Select month"
         isOpen={monthPickerOpen}
         options={monthOptions}
         initialSelectedValue={today.getMonth()}
