@@ -98,7 +98,7 @@ export function RunnerPicker<T>(props: RunnerPickerProps<T>): JSX.Element {
       <Button
         title="Cancel"
         onPress={() => props.onCancel()}
-        color={theme.colors.primary}
+        color={theme.colors.danger}
       />
     </BottomSheetModal>
   );

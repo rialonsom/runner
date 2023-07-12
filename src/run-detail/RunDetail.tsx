@@ -58,7 +58,11 @@ export function RunDetail() {
         <RunnerDivider />
         <RunDetailRow stat="Date" value={runDisplayData?.date} />
       </View>
-      <Button title="Delete" color="red" onPress={onPressDelete} />
+      <Button
+        title="Delete"
+        color={theme.colors.danger}
+        onPress={onPressDelete}
+      />
     </View>
   );
 }

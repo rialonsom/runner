@@ -159,7 +159,7 @@ export function RunnerDistancePicker(
       <Button
         title="Cancel"
         onPress={() => props.onCancel()}
-        color={theme.colors.primary}
+        color={theme.colors.danger}
       />
     </BottomSheetModal>
   );

@@ -104,7 +104,7 @@ export function RunCreation() {
       <Button
         title="Cancel"
         onPress={() => navigation.goBack()}
-        color={theme.colors.primary}
+        color={theme.colors.danger}
       />
     );
     const headerRight = () => (
@@ -116,7 +116,7 @@ export function RunCreation() {
     );
     const title = isEdit ? 'Edit run' : 'New run';
     navigation.setOptions({ title, headerLeft, headerRight });
-  }, [isEdit, navigation, onPressDone, theme.colors.primary]);
+  }, [isEdit, navigation, onPressDone, theme.colors]);
 
   const { convertedDistance: distance, distanceSymbol } =
     convertDistanceFromMeters(distanceMeters, unitPreference);
