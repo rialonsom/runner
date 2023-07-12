@@ -19,7 +19,7 @@ export const runnerLightNavigationTheme: NavigationTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'blue',
+    primary: '#30b0c7',
   },
 };
 
@@ -36,7 +36,7 @@ export const runnerDarkNavigationTheme: NavigationTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: 'green',
+    primary: '#40c8e0',
   },
 };
 
