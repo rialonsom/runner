@@ -2,7 +2,11 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import React from 'react';
-import BottomSheet from '@gorhom/bottom-sheet';
+import {
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+  BottomSheetModal,
+} from '@gorhom/bottom-sheet';
 import { ThemeContext } from '../theme';
 import { UnitPreference, useUserUnitPreference } from '../user-preferences';
 import { convertDistanceFromMeters, convertDistanceToMeters } from '../utils';
@@ -58,11 +62,11 @@ export function RunnerDistancePicker(
     Math.trunc((initialSelectedDistance % 1) * 100),
   );
 
-  const bottomSheetRef = useRef<BottomSheet>(null);
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   useEffect(() => {
     if (props.isOpen) {
-      bottomSheetRef.current?.expand();
+      bottomSheetRef.current?.present();
     } else {
       bottomSheetRef.current?.close();
     }
@@ -81,15 +85,37 @@ export function RunnerDistancePicker(
 
   const distanceUnit = unitPreference === UnitPreference.Imperial ? 'mi' : 'km';
 
+  const onChange = useCallback(
+    (index: number) => {
+      if (index === -1) {
+        props.onCancel();
+      }
+    },
+    [props],
+  );
+
+  const BackdropComponent = useCallback(
+    (backdropComponentProps: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop
+        {...backdropComponentProps}
+        disappearsOnIndex={-1}
+        style={[styles.backdrop]}
+      />
+    ),
+    [],
+  );
+
   return (
-    <BottomSheet
+    <BottomSheetModal
       ref={bottomSheetRef}
-      index={-1}
+      index={0}
       snapPoints={['50%']}
       enableHandlePanningGesture={false}
       handleComponent={null}
-      style={[styles.bottomSheet, { backgroundColor: theme.colors.card }]}
-      backgroundStyle={{ backgroundColor: theme.colors.card }}>
+      style={{ backgroundColor: theme.colors.card }}
+      backgroundStyle={{ backgroundColor: theme.colors.card }}
+      backdropComponent={BackdropComponent}
+      onChange={onChange}>
       <RunnerSecondaryText style={styles.title}>
         Select distance ({distanceUnit})
       </RunnerSecondaryText>
@@ -135,7 +161,7 @@ export function RunnerDistancePicker(
         onPress={() => props.onCancel()}
         color={theme.colors.primary}
       />
-    </BottomSheet>
+    </BottomSheetModal>
   );
 }
 
@@ -154,15 +180,12 @@ const styles = StyleSheet.create({
   pickerItem: {
     fontSize: 18,
   },
-  bottomSheet: {
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
+  backdrop: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'black',
   },
 });
