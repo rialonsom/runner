@@ -16,7 +16,7 @@ export function RootStackNavigator() {
         />
       </RootStack.Group>
       <RootStack.Group
-        screenOptions={{ presentation: 'modal', headerShown: true }}>
+        screenOptions={{ presentation: 'containedModal', headerShown: true }}>
         <RootStack.Screen name="RunCreation" component={RunCreation} />
         <RootStack.Screen
           name="SettingsStack"
