@@ -8,7 +8,7 @@ import { ThemeContext } from '../theme';
 import { useUserUnitPreference } from '../user-preferences';
 import { Run } from '../data-realm/run/runModel';
 
-export function RunListRow(props: {
+export const RunListRow = React.memo(function RunListRow(props: {
   run: Run;
   index: number;
   navigation: RunsStackScreenProps['navigation'];
@@ -30,11 +30,14 @@ export function RunListRow(props: {
       </View>
     </TouchableOpacity>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: 64,
+    paddingHorizontal: 8,
     marginHorizontal: 20,
     marginBottom: 8,
     borderRadius: 8,

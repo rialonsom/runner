@@ -53,6 +53,10 @@ export function RunList() {
     <SectionList
       sections={runSections}
       renderItem={renderItem}
+      keyExtractor={item => item._id}
+      initialNumToRender={50}
+      maxToRenderPerBatch={50}
+      windowSize={41}
       renderSectionHeader={renderSectionHeader}
     />
   );
