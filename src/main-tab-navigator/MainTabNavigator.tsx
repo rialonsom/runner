@@ -7,12 +7,14 @@ import { RunDetail, RunDetailHeaderRight } from '../run-detail';
 import {
   MainTabParamList,
   RunsStackParamList,
+  ShoesStackParamList,
   SummaryStackParamList,
   TabBarIconProps,
 } from './types';
 import { MainTabNavigatorHeaderLeft } from './MainTabNavigatorHeaderLeft';
 import RunsIcon from '../../assets/run-icon.svg';
 import SummaryIcon from '../../assets/summary-icon.svg';
+import { ShoeList } from '../shoe-list';
 
 const RunsStack = createNativeStackNavigator<RunsStackParamList>();
 function RunsStackNavigator() {
@@ -52,6 +54,19 @@ function SummaryStackNavigator() {
   );
 }
 
+const ShoesStack = createNativeStackNavigator<ShoesStackParamList>();
+function ShoesStackNavigator() {
+  return (
+    <ShoesStack.Navigator initialRouteName="ShoeList">
+      <ShoesStack.Screen
+        name="ShoeList"
+        component={ShoeList}
+        options={{ headerLeft: MainTabNavigatorHeaderLeft }}
+      />
+    </ShoesStack.Navigator>
+  );
+}
+
 const MainTab = createBottomTabNavigator<MainTabParamList>();
 export function MainTabNavigator() {
   const runsTabIcon = ({ color, size }: TabBarIconProps) => (
@@ -72,6 +87,11 @@ export function MainTabNavigator() {
         name="SummaryTab"
         component={SummaryStackNavigator}
         options={{ title: 'Summary', tabBarIcon: summaryTabIcon }}
+      />
+      <MainTab.Screen
+        name="ShoesTab"
+        component={ShoesStackNavigator}
+        options={{ title: 'My shoes' }}
       />
     </MainTab.Navigator>
   );

@@ -26,10 +26,20 @@ export type SummaryStackScreenProps = CompositeScreenProps<
   MainTabScreenProps
 >;
 
+// Shoes stack navigation
+export type ShoesStackParamList = {
+  ShoeList: undefined;
+};
+export type ShoesStackScreenProps = CompositeScreenProps<
+  NativeStackScreenProps<ShoesStackParamList>,
+  MainTabScreenProps
+>;
+
 // Main tab navigation
 export type MainTabParamList = {
   RunsTab: NavigatorScreenParams<RunsStackParamList>;
   SummaryTab: NavigatorScreenParams<SummaryStackParamList>;
+  ShoesTab: NavigatorScreenParams<ShoesStackParamList>;
 };
 export type MainTabScreenProps = CompositeScreenProps<
   BottomTabScreenProps<MainTabParamList>,
