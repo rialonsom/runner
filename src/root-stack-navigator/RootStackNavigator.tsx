@@ -3,6 +3,7 @@ import React from 'react';
 import { MainTabNavigator } from '../main-tab-navigator/MainTabNavigator';
 import { RunCreation } from '../run-creation';
 import { SettingsStackNavigator } from '../settings';
+import { ShoeCreation } from '../shoe-creation';
 
 const RootStack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export function RootStackNavigator() {
       <RootStack.Group
         screenOptions={{ presentation: 'containedModal', headerShown: true }}>
         <RootStack.Screen name="RunCreation" component={RunCreation} />
+        <RootStack.Screen name="ShoeCreation" component={ShoeCreation} />
         <RootStack.Screen
           name="SettingsStack"
           component={SettingsStackNavigator}
