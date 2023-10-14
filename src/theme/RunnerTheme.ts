@@ -9,6 +9,7 @@ export type RunnerThemeName = 'light' | 'dark';
 type ComplementaryTheme = {
   colors: {
     secondaryText: string;
+    placeholderText: string;
     danger: string;
   };
 };
@@ -28,6 +29,7 @@ export const runnerLightTheme: RunnerTheme = {
   colors: {
     ...runnerLightNavigationTheme.colors,
     secondaryText: 'gray',
+    placeholderText: '#c7c7c7',
     danger: '#ff3b30',
   },
 };
@@ -45,6 +47,7 @@ export const runnerDarkTheme: RunnerTheme = {
   colors: {
     ...runnerDarkNavigationTheme.colors,
     secondaryText: 'gray',
+    placeholderText: '#3c3c3c',
     danger: '#ff443a',
   },
 };
