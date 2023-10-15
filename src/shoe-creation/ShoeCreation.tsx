@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React, {
   useCallback,
   useContext,
@@ -15,31 +15,55 @@ import {
   Alert,
   Switch,
 } from 'react-native';
-import { RootStackScreenProps } from '../root-stack-navigator';
+import {
+  RootStackParamList,
+  RootStackScreenProps,
+} from '../root-stack-navigator';
 import { ThemeContext } from '../theme';
 import { RunnerDivider, RunnerInputRow, RunnerText } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
-import { addShoe } from '../data-realm/shoe/shoeMutations';
+import { addShoe, updateShoe } from '../data-realm/shoe/shoeMutations';
 import { useRealm } from '../data-realm/RealmProvider';
 import { UnitPreference, useUserUnitPreference } from '../user-preferences';
 import { validateShoeInput } from './validation';
 import { ShoeProps } from '../data-realm/shoe/shoeModel';
-import { convertDistanceToMeters } from '../utils';
+import { convertDistanceFromMeters, convertDistanceToMeters } from '../utils';
+import { getShoe } from '../data-realm/shoe/shoeQueries';
 
 export function ShoeCreation() {
   const realm = useRealm();
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<RootStackScreenProps['navigation']>();
+  const route = useRoute<RouteProp<RootStackParamList, 'ShoeCreation'>>();
   const [unitPreference] = useUserUnitPreference();
 
-  const isEdit = false;
+  const editShoe = useMemo(() => {
+    if (route.params !== undefined && route.params.shoeId !== undefined) {
+      return getShoe(route.params.shoeId, realm);
+    } else {
+      return null;
+    }
+  }, [realm, route.params]);
 
-  const [brand, setBrand] = useState('');
-  const [name, setName] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-  const [hasEndDate, setHasEndDate] = useState(false);
-  const [endDate, setEndDate] = useState(new Date());
-  const [lifespan, setLifespan] = useState('');
+  const isEdit = editShoe !== null;
+
+  const [brand, setBrand] = useState(editShoe?.brand ?? '');
+  const [name, setName] = useState(editShoe?.name ?? '');
+  const [startDate, setStartDate] = useState(editShoe?.startDate ?? new Date());
+  const [hasEndDate, setHasEndDate] = useState(!!editShoe?.endDate);
+  const [endDate, setEndDate] = useState(editShoe?.endDate ?? new Date());
+
+  const getInitialLifespan = () => {
+    const lifespanMeters = editShoe?.lifespanMeters;
+    if (lifespanMeters) {
+      const { convertedDistance: lifespan } = convertDistanceFromMeters(
+        lifespanMeters,
+        unitPreference,
+      );
+      return lifespan.toFixed(0);
+    }
+  };
+  const [lifespan, setLifespan] = useState(getInitialLifespan() ?? '');
 
   const [startDatePickerOpen, setStartDatePickerOpen] = useState(false);
   const [endDatePickerOpen, setEndDatePickerOpen] = useState(false);
@@ -76,12 +100,18 @@ export function ShoeCreation() {
       ).convertedDistance,
     };
 
-    addShoe(shoeProps, realm);
+    if (isEdit) {
+      updateShoe(editShoe, shoeProps, realm);
+    } else {
+      addShoe(shoeProps, realm);
+    }
     navigation.goBack();
   }, [
     brand,
+    editShoe,
     endDate,
     hasEndDate,
+    isEdit,
     lifespan,
     name,
     navigation,

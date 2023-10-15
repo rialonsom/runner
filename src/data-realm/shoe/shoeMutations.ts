@@ -11,7 +11,7 @@ export function addShoe(newShoeProps: ShoeProps, realm: Realm) {
   });
 }
 
-export function updateRun(shoe: Shoe, newShoeProps: ShoeProps, realm: Realm) {
+export function updateShoe(shoe: Shoe, newShoeProps: ShoeProps, realm: Realm) {
   realm.write(() => {
     shoe.brand = newShoeProps.brand;
     shoe.name = newShoeProps.name;
