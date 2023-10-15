@@ -5,7 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 export type RootStackParamList = {
   MainTabNavigator: NavigatorScreenParams<MainTabParamList>;
   RunCreation?: { runId?: string };
-  ShoeCreation: undefined;
+  ShoeCreation?: { shoeId?: string };
   SettingsStack: undefined;
 };
 

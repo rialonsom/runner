@@ -16,7 +16,7 @@ import RunsIcon from '../../assets/run-icon.svg';
 import SummaryIcon from '../../assets/summary-icon.svg';
 import { ShoeList } from '../shoe-list';
 import { ShoeListHeaderRight } from '../shoe-list';
-import { ShoeDetail } from '../shoe-detail';
+import { ShoeDetail, ShoeDetailHeaderRight } from '../shoe-detail';
 
 const RunsStack = createNativeStackNavigator<RunsStackParamList>();
 function RunsStackNavigator() {
@@ -74,6 +74,7 @@ function ShoesStackNavigator() {
         component={ShoeDetail}
         options={{
           title: 'Shoe details',
+          headerRight: ShoeDetailHeaderRight,
         }}
       />
     </ShoesStack.Navigator>
