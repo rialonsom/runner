@@ -1,10 +1,20 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { FlatList, ListRenderItemInfo } from 'react-native';
+import { useShoes } from '../data-realm/shoe/shoeHooks';
+import { Shoe } from '../data-realm/shoe/shoeModel';
+import { ShoeListRow } from './ShoeListRow';
+import { useNavigation } from '@react-navigation/native';
+import { ShoesStackScreenProps } from '../main-tab-navigator';
 
 export function ShoeList() {
-  return (
-    <View>
-      <Text>Shoe List</Text>
-    </View>
-  );
+  const navigation = useNavigation<ShoesStackScreenProps['navigation']>();
+  const shoes = useShoes();
+
+  const renderItem = ({ item, index }: ListRenderItemInfo<Shoe>) => {
+    const shoe = item;
+
+    return <ShoeListRow shoe={shoe} index={index} navigation={navigation} />;
+  };
+
+  return <FlatList data={shoes} renderItem={renderItem} />;
 }
