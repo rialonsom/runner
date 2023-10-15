@@ -17,7 +17,7 @@ export function ShoeListRow(props: {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.navigation.navigate('ShoeDetail');
+        props.navigation.navigate('ShoeDetail', { shoeId: props.shoe._id });
       }}>
       <View
         style={[

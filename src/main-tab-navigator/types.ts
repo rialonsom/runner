@@ -29,7 +29,7 @@ export type SummaryStackScreenProps = CompositeScreenProps<
 // Shoes stack navigation
 export type ShoesStackParamList = {
   ShoeList: undefined;
-  ShoeDetail: undefined;
+  ShoeDetail: { shoeId: string };
 };
 export type ShoesStackScreenProps = CompositeScreenProps<
   NativeStackScreenProps<ShoesStackParamList>,
