@@ -77,12 +77,14 @@ export function ShoeCreation() {
     };
 
     addShoe(shoeProps, realm);
+    navigation.goBack();
   }, [
     brand,
     endDate,
     hasEndDate,
     lifespan,
     name,
+    navigation,
     realm,
     startDate,
     unitPreference,
