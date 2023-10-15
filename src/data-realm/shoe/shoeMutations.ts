@@ -21,7 +21,7 @@ export function updateShoe(shoe: Shoe, newShoeProps: ShoeProps, realm: Realm) {
   });
 }
 
-export function deleteRun(shoe: Shoe, realm: Realm) {
+export function deleteShoe(shoe: Shoe, realm: Realm) {
   realm.write(() => {
     realm.delete(shoe);
   });
