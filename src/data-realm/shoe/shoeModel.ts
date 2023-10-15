@@ -12,6 +12,7 @@ export class Shoe extends Realm.Object<Shoe> {
     name: 'Shoe',
     properties: {
       _id: 'string',
+      brand: 'string',
       name: 'string',
       startDate: 'date',
       endDate: 'date?',
