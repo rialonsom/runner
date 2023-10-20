@@ -14,6 +14,7 @@ import {
 import { MainTabNavigatorHeaderLeft } from './MainTabNavigatorHeaderLeft';
 import RunsIcon from '../../assets/run-icon.svg';
 import SummaryIcon from '../../assets/summary-icon.svg';
+import ShoesIcon from '../../assets/shoe-icon.svg';
 import { ShoeList } from '../shoe-list';
 import { ShoeListHeaderRight } from '../shoe-list';
 import { ShoeDetail, ShoeDetailHeaderRight } from '../shoe-detail';
@@ -89,6 +90,9 @@ export function MainTabNavigator() {
   const summaryTabIcon = ({ color, size }: TabBarIconProps) => (
     <SummaryIcon width={size} height={size} fill={color} stroke={color} />
   );
+  const shoesTabIcon = ({ color, size }: TabBarIconProps) => (
+    <ShoesIcon width={size} height={size} fill={color} stroke={color} />
+  );
 
   return (
     <MainTab.Navigator screenOptions={{ headerShown: false }}>
@@ -105,7 +109,7 @@ export function MainTabNavigator() {
       <MainTab.Screen
         name="ShoesTab"
         component={ShoesStackNavigator}
-        options={{ title: 'My shoes' }}
+        options={{ title: 'My shoes', tabBarIcon: shoesTabIcon }}
       />
     </MainTab.Navigator>
   );
