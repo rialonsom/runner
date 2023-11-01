@@ -1,15 +1,20 @@
 import Realm from 'realm';
 import uuid from 'react-native-uuid';
 import { ImportedRunProps, Run, RunProps, RunSource } from './runModel';
+import { Shoe } from '../shoe/shoeModel';
 
-export function addRun(newRunProps: RunProps, realm: Realm) {
+export function addRun(newRunProps: RunProps, realm: Realm): string {
+  const _id = uuid.v4().toString();
+
   realm.write(() => {
     realm.create('Run', {
       ...newRunProps,
-      _id: uuid.v4().toString(),
+      _id,
       source: RunSource.Runner,
     });
   });
+
+  return _id;
 }
 
 export function updateRun(run: Run, newRunProps: RunProps, realm: Realm) {
@@ -24,6 +29,36 @@ export function deleteRun(run: Run, realm: Realm) {
   realm.write(() => {
     realm.delete(run);
   });
+}
+
+export function setRunShoe(run: Run, shoe: Shoe | undefined, realm: Realm) {
+  const oldShoe = run.shoe[0];
+
+  // Remove shoe
+  if (oldShoe && !shoe) {
+    const indexOfRun = oldShoe.runs.findIndex(
+      shoeRun => shoeRun._id === run._id,
+    );
+    realm.write(() => {
+      oldShoe.runs.splice(indexOfRun, 1);
+    });
+  }
+  // Replace shoe
+  if (oldShoe && shoe) {
+    const indexOfRun = oldShoe.runs.findIndex(
+      shoeRun => shoeRun._id === run._id,
+    );
+    realm.write(() => {
+      oldShoe.runs.splice(indexOfRun, 1);
+      shoe.runs.push(run);
+    });
+  }
+  // Add shoe
+  if (!oldShoe && shoe) {
+    realm.write(() => {
+      shoe.runs.push(run);
+    });
+  }
 }
 
 export function addImportedRuns(
