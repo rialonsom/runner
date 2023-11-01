@@ -57,6 +57,15 @@ export function RunDetail() {
         <RunDetailRow stat="Pace" value={runDisplayData?.pace} />
         <RunnerDivider />
         <RunDetailRow stat="Date" value={runDisplayData?.date} />
+        {runDisplayData?.shoe && (
+          <>
+            <RunnerDivider />
+            <RunDetailRow
+              stat="Shoe used"
+              value={`${runDisplayData?.shoe?.brand} ${runDisplayData?.shoe?.name}`}
+            />
+          </>
+        )}
       </View>
       <Button
         title="Delete"

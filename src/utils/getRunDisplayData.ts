@@ -4,12 +4,18 @@ import { UnitPreference } from '../user-preferences';
 import { convertDistanceFromMeters } from './convertDistanceFromMeters';
 import { Run } from '../data-realm/run/runModel';
 
+type RunShoeDisplayData = {
+  brand: string;
+  name: string;
+};
+
 export type RunDisplayData = {
   _id: string;
   date: string;
   distance: string;
   duration: string;
   pace: string;
+  shoe?: RunShoeDisplayData;
 };
 
 export function getRunDisplayData(
@@ -37,11 +43,22 @@ export function getRunDisplayData(
     minute: 'numeric',
   });
 
+  let shoe: RunShoeDisplayData | undefined;
+  const shoeObject = run.shoe[0];
+
+  if (shoeObject) {
+    shoe = {
+      brand: shoeObject.brand,
+      name: shoeObject.name,
+    };
+  }
+
   return {
     _id,
     date,
     distance,
     duration,
     pace,
+    shoe,
   };
 }
