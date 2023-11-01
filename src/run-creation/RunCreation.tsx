@@ -17,15 +17,18 @@ import {
   RunnerInputRow,
   RunnerDistancePicker,
   RunnerDurationPicker,
+  RunnerPicker,
+  RunnerPickerOption,
 } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
 import { ThemeContext } from '../theme';
 import { convertDistanceFromMeters } from '../utils';
 import { useUserUnitPreference } from '../user-preferences';
 import format from 'format-duration';
-import { addRun, updateRun } from '../data-realm/run/runMutations';
+import { addRun, setRunShoe, updateRun } from '../data-realm/run/runMutations';
 import { useRealm } from '../data-realm/RealmProvider';
 import { getRun } from '../data-realm/run/runQueries';
+import { useShoes } from '../data-realm/shoe/shoeHooks';
 
 export function RunCreation() {
   const realm = useRealm();
@@ -42,6 +45,18 @@ export function RunCreation() {
     }
   }, [realm, route.params]);
 
+  const shoes = useShoes();
+  const shoeOptions: RunnerPickerOption<string>[] = shoes.map(shoe => ({
+    key: shoe._id,
+    label: shoe.brand + ' ' + shoe.name,
+    value: shoe._id,
+  }));
+  shoeOptions.unshift({
+    key: 'null',
+    label: 'No shoe selected',
+    value: 'null',
+  });
+
   const isEdit = editRun !== null;
 
   const [distanceMeters, setDistanceMeters] = useState(
@@ -52,11 +67,14 @@ export function RunCreation() {
   );
   const [date, setDate] = useState(editRun?.date ?? new Date());
   const [time, setTime] = useState(editRun?.date ?? new Date());
+  const [shoeId, setShoeId] = useState(editRun?.shoe[0]?._id ?? 'null');
+  const shoe = shoes.find(s => s._id === shoeId);
 
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [timePickerOpen, setTimePickerOpen] = useState(false);
   const [distancePickerOpen, setDistancePickerOpen] = useState(false);
   const [durationPickerOpen, setDurationPickerOpen] = useState(false);
+  const [shoePickerOpen, setShoePickerOpen] = useState(false);
 
   const onPressDone = useCallback(() => {
     if (distanceMeters === 0 || durationSeconds === 0) {
@@ -82,11 +100,17 @@ export function RunCreation() {
       date: dateTime,
     };
 
+    let runId;
     if (isEdit) {
       updateRun(editRun, runProps, realm);
+      runId = editRun._id;
     } else {
-      addRun(runProps, realm);
+      runId = addRun(runProps, realm);
     }
+
+    const editedRun = getRun(runId, realm)!;
+    setRunShoe(editedRun, shoe, realm);
+
     navigation.goBack();
   }, [
     date,
@@ -96,6 +120,7 @@ export function RunCreation() {
     isEdit,
     navigation,
     realm,
+    shoe,
     time,
   ]);
 
@@ -184,7 +209,27 @@ export function RunCreation() {
           <RunnerText>Duration</RunnerText>
           <RunnerText>{durationString}</RunnerText>
         </RunnerInputRow>
+        <RunnerDivider />
+        <RunnerInputRow onPress={() => setShoePickerOpen(true)}>
+          <RunnerText>Shoe</RunnerText>
+          <RunnerText>
+            {shoe ? shoe.brand + ' ' + shoe.name : 'No shoe selected'}
+          </RunnerText>
+        </RunnerInputRow>
       </View>
+      <RunnerPicker
+        title="Select shoe used"
+        isOpen={shoePickerOpen}
+        options={shoeOptions}
+        initialSelectedValue={shoeId}
+        onSelect={shoeIdPicked => {
+          setShoeId(shoeIdPicked);
+          setShoePickerOpen(false);
+        }}
+        onCancel={() => {
+          setShoePickerOpen(false);
+        }}
+      />
       <RunnerDistancePicker
         isOpen={distancePickerOpen}
         initialSelectedValue={distanceMeters}
