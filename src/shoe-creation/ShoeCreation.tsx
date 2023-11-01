@@ -22,7 +22,11 @@ import {
 import { ThemeContext } from '../theme';
 import { RunnerDivider, RunnerInputRow, RunnerText } from '../ui-components';
 import DatePicker from 'react-native-date-picker';
-import { addShoe, updateShoe } from '../data-realm/shoe/shoeMutations';
+import {
+  addShoe,
+  applyShoeToRunsWithinDates,
+  updateShoe,
+} from '../data-realm/shoe/shoeMutations';
 import { useRealm } from '../data-realm/RealmProvider';
 import { UnitPreference, useUserUnitPreference } from '../user-preferences';
 import { validateShoeInput } from './validation';
@@ -52,6 +56,7 @@ export function ShoeCreation() {
   const [startDate, setStartDate] = useState(editShoe?.startDate ?? new Date());
   const [hasEndDate, setHasEndDate] = useState(!!editShoe?.endDate);
   const [endDate, setEndDate] = useState(editShoe?.endDate ?? new Date());
+  const [applyShoeToRuns, setApplyShoeToRuns] = useState(false);
 
   const getInitialLifespan = () => {
     const lifespanMeters = editShoe?.lifespanMeters;
@@ -100,13 +105,22 @@ export function ShoeCreation() {
       ).convertedDistance,
     };
 
+    let shoeId;
     if (isEdit) {
       updateShoe(editShoe, shoeProps, realm);
+      shoeId = editShoe._id;
     } else {
-      addShoe(shoeProps, realm);
+      shoeId = addShoe(shoeProps, realm);
     }
+
+    if (hasEndDate && applyShoeToRuns) {
+      const editedShoe = getShoe(shoeId, realm)!;
+      applyShoeToRunsWithinDates(editedShoe, realm);
+    }
+
     navigation.goBack();
   }, [
+    applyShoeToRuns,
     brand,
     editShoe,
     endDate,
@@ -211,10 +225,7 @@ export function ShoeCreation() {
           />
         </RunnerInputRow>
         <RunnerDivider />
-        <RunnerInputRow
-          onPress={() => {
-            setEndDatePickerOpen(true);
-          }}>
+        <RunnerInputRow disabled={true}>
           <RunnerText>Has ended life</RunnerText>
           <Switch
             value={hasEndDate}
@@ -247,6 +258,17 @@ export function ShoeCreation() {
             onCancel={() => {
               setEndDatePickerOpen(false);
             }}
+          />
+        </RunnerInputRow>
+        <RunnerDivider />
+        <RunnerInputRow disabled={true}>
+          <RunnerText style={endDateTextStyle}>
+            Apply shoe to all runs without shoe
+          </RunnerText>
+          <Switch
+            value={applyShoeToRuns}
+            disabled={!hasEndDate}
+            onValueChange={value => setApplyShoeToRuns(value)}
           />
         </RunnerInputRow>
         <RunnerDivider />
