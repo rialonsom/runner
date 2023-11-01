@@ -70,6 +70,11 @@ export function ShoeDetail() {
         )}
 
         <ShoeDetailRow attribute="Lifespan" value={shoeDisplayData?.lifespan} />
+        <RunnerDivider />
+        <ShoeDetailRow
+          attribute="Distance traveled"
+          value={shoeDisplayData?.distanceTraveled}
+        />
       </View>
       <Button
         title="Delete"

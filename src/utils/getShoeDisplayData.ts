@@ -8,6 +8,7 @@ export type ShoeDisplayData = {
   startDate: string;
   endDate?: string;
   lifespan: string;
+  distanceTraveled: string;
 };
 
 export function getShoeDisplayData(
@@ -25,16 +26,27 @@ export function getShoeDisplayData(
     day: 'numeric',
   });
 
-  const { convertedDistance, distanceSymbol } = convertDistanceFromMeters(
-    shoe.lifespanMeters,
-    unitPreference,
+  const {
+    convertedDistance: convertedLifespan,
+    distanceSymbol: lifespanSymbol,
+  } = convertDistanceFromMeters(shoe.lifespanMeters, unitPreference);
+
+  const distanceTraveledMeters = shoe.runs.reduce(
+    (acc, cur) => acc + cur.distanceMeters,
+    0,
   );
+  const {
+    convertedDistance: distanceTraveled,
+    distanceSymbol: distanceTraveledSymbol,
+  } = convertDistanceFromMeters(distanceTraveledMeters, unitPreference);
 
   return {
     brand: shoe.brand,
     name: shoe.name,
     startDate,
     endDate,
-    lifespan: convertedDistance.toFixed(0) + ' ' + distanceSymbol,
+    lifespan: convertedLifespan.toFixed(0) + ' ' + lifespanSymbol,
+    distanceTraveled:
+      distanceTraveled.toFixed(2) + ' ' + distanceTraveledSymbol,
   };
 }
