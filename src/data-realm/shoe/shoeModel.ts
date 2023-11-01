@@ -1,4 +1,5 @@
 import Realm from 'realm';
+import { Run } from '../run/runModel';
 
 export class Shoe extends Realm.Object<Shoe> {
   _id!: string;
@@ -7,6 +8,7 @@ export class Shoe extends Realm.Object<Shoe> {
   startDate!: Date;
   endDate?: Date;
   lifespanMeters!: number;
+  runs!: Realm.List<Run>;
 
   static schema = {
     name: 'Shoe',
@@ -17,6 +19,7 @@ export class Shoe extends Realm.Object<Shoe> {
       startDate: 'date',
       endDate: 'date?',
       lifespanMeters: 'int',
+      runs: 'Run[]',
     },
     primaryKey: '_id',
   };

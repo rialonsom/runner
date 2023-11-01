@@ -1,4 +1,5 @@
 import Realm from 'realm';
+import { Shoe } from '../shoe/shoeModel';
 
 export enum RunSource {
   Runner = 'runner',
@@ -11,6 +12,7 @@ export class Run extends Realm.Object<Run> {
   distanceMeters!: number;
   date!: Date;
   source!: RunSource;
+  shoe!: Shoe[];
 
   static schema = {
     name: 'Run',
@@ -20,6 +22,11 @@ export class Run extends Realm.Object<Run> {
       distanceMeters: 'int',
       date: 'date',
       source: 'string',
+      shoe: {
+        type: 'linkingObjects',
+        objectType: 'Shoe',
+        property: 'runs',
+      },
     },
     primaryKey: '_id',
   };
