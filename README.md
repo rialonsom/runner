@@ -11,6 +11,7 @@ The Apple Fitness app only shows aggregated workout data up to a period of a mon
 - Add and edit running workouts.
 - View a summary of your running workouts (aggregated data), by month, year, or everything.
 - Import running workouts from Apple Fitness in iOS devices (done from the app settings).
+- Shoe usage tracking
 
 ### Additional features
 
@@ -34,9 +35,10 @@ This app was developed and optimized for iOS devices (Android may work but is mi
 
 ## Screenshots
 
-|                                                                    |                                                                  |                                                                          |
-|:------------------------------------------------------------------:|:----------------------------------------------------------------:|:------------------------------------------------------------------------:|
-| **Runs list in My runs tab**                                       | **Individual run details**                                       | **New/edit run form**                                                    |
-| ![Runs list](/docs/screenshots/run-list.png "Runs list")           | ![Runs details](/docs/screenshots/run-details.png "Run details") | ![New/edit run form](/docs/screenshots/new-edit.png "New/edit run form") |
-| **Runs summary in Summary tab**                                    | **Settings**                                                     |                                                                          |
-| ![Runs summary](/docs/screenshots/runs-summary.png "Runs summary") | ![Settings](/docs/screenshots/settings.png "Settings")           |                                                                          |
+| **Runs list in My runs tab**                                                 | **Individual run details**                                       | **New/edit run form**                                                          |
+|------------------------------------------------------------------------------|------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| ![Runs list](/docs/screenshots/1-run-list.png "Runs list")                   | ![Run details](/docs/screenshots/2-run-detail.png "Run details") | ![New/edit run form](/docs/screenshots/3-run-new-edit.png "New/edit run form") |
+| **Runs summary in Summary tab**                                              | **Shoe list in My shoes tab**                                    | **Shoe details**                                                               |
+| ![Runs summary](/docs/screenshots/4-run-summary.png "Runs summary")          | ![Shoes list](/docs/screenshots/5-shoe-list.png "Shoes list")    | ![Shoe details](/docs/screenshots/6-shoe-detail.png "Shoe details")            |
+| **New/edit shoe form**                                                       | **Settings**                                                     |                                                                                |
+| ![New-edit shoe form](/docs/screenshots/7-shoe-new-edit.png "Shoes details") | ![Settings](/docs/screenshots/8-settings.png "Settings")         |                                                                                |
